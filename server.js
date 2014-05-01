@@ -11,7 +11,7 @@ var express = require('express'),
 
 //Config
 
-mongoose.connect('mongodb://localhost');
+mongoose.connect('mongodb://localhost/questions');
 
 app.configure(function () {
     app.use(express.static(__dirname + '/public'));
