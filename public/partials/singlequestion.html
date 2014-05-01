@@ -5,11 +5,18 @@
     <div class="add-link">
         <a class="button" href="/ask">Ask a question</a>
     </div>
-    <div class="question">
-        <h1>{{question.title}}</h1>    
+    <div class="slide-container">
+        <div class="question slide">
+            <h1>{{question.title}}</h1>    
+        </div>
     </div>
-    <div class="stats">
-        Asked by {{question.creator}} on {{question.date | date}}, {{question.option_1_votes + question.option_2_votes}} votes. <a href="" ng-click="reportQuestion(question._id)">{{reportMessage}}</a> <a href="" ng-click="deleteQuestion(question._id)" ng-show="ownedQuestion">Delete!</a>
+    <div class="info">
+        Asked by {{question.creator}} on {{question.date | date}}, {{question.option_1_votes + question.option_2_votes}} votes.
+        <div class="header-buttons">
+            <a class="tweet-link button-small" target="_blank" href="https://twitter.com/share">Tweet</a>
+            <a class="alert button-small" href="" ng-click="reportQuestion(question._id)">{{reportMessage}}</a>
+            <a class="warning button-small" href="" ng-click="deleteQuestion(question._id)" ng-show="ownedQuestion">Delete</a>
+        </div>
 
         <!--<a href="https://twitter.com/share" class="twitter-share-button" data-via="cfjsvarden" data-lang="en">Tweet</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> -->
@@ -20,7 +27,7 @@
     <div class="option option-1"></div>
     <div class="option-content content-1">
         <aside id="result-1" ng-show="question.hasVoted" class="percentage">{{question.option_1_votes / totalVotes * 100 | number:0}}<small>%</small></aside>
-        <h3>{{question.option_1}}</h3>
+        <h3 class="slide">{{question.option_1}}</h3>
         <!-- <div ng-show="question.selection == 1">think so too</div> -->
     </div>
 </div>
@@ -28,17 +35,17 @@
     <div class="option option-2"></div>
     <div class="option-content content-2">
         <aside id="result-2" ng-show="question.hasVoted" class="percentage">{{question.option_2_votes / totalVotes * 100 | number:0}}<small>%</small></aside>
-        <h3>{{question.option_2}}</h3>
+        <h3 class="slide">{{question.option_2}}</h3>
         <!-- <div ng-show="question.selection == 2">think so too</div> -->
     </div>
 </div>
 
 <div class="control-buttons">
-    <a class="button shake" id="next-button" ng-href="/#/{{nextQuestion.url}}" self-refresh>
+    <a class="button shake" id="next-button" ng-href="/{{nextQuestion.url}}" self-refresh>
         {{nextQuestion ? "Answer another &#10152;" : "Loading next..."}}
     </a>
     <div class="add-link-mobile">
-        <a class="button" href="/ask">Ask a question</a>
+        <a class="button" href="/#/ask">Ask a question</a>
     </div>
 </div>
 

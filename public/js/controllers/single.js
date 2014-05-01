@@ -94,7 +94,7 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
 
     };
 
-    $scope.reportMessage = 'Report this question';
+    $scope.reportMessage = 'Report';
     $scope.reportQuestion = function (id) {
         $scope.reportMessage = 'Flagged for review'
         $http.put('/api/report/' + id)

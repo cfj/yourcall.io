@@ -77,7 +77,7 @@ footer {
     height: 140px;
     width: 100%;
     background: rgba(0, 0, 0, .5);
-
+    margin-top: -15px;
     font-size: .8em;
     color: rgba(255,255,255,.8);
 }
@@ -132,26 +132,68 @@ header {
       margin-top: 0;
     }
 
-    .stats {
+    .info {
       font-size: .8em;
       color: rgba(255,255,255,.7);
       padding-top: 1em;
       text-shadow: 0 1px 0 rgba(0,0,0,.4);
     }
 
-      .stats a {
-        display: inline-block;
-        background: rgba(255,25,25,.3);
+      .info a {
+        margin-right: .5em;
         border-radius: 2px;
-        padding: 3px;
-        color: rgba(255,255,255,.6);
+        display: inline-block;
+        text-shadow: none;
       }
 
-        .stats a:hover {
-          color: rgba(255,255,255,.7);
+      .tweet-link {
+        color: rgba(255,255,255,.9);
+        padding: 3px 3px 3px 25px;
+        background-image: url('../images/Twitter_logo_white_20px.png');
+        background-repeat: no-repeat;
+        background-position: 3px 3px;
+        background-color: #55acee;
+      }
+
+        .tweet-link:hover {
+          color: white;
+          background-color: #7CBCEA;
         }
 
+      .alert {
+        padding: 3px;
+        background: #E5AB24;
+        color: #444;
+      }
+
+        .alert:hover {
+          color: black;
+          background: #E2B553;
+        }
+
+      .warning {
+        background: #D53319;
+        color: rgba(255,255,255,.9);
+        padding: 3px;
+      }
+
+        .warning:hover {
+          color: white;
+          background: #D34630;
+        }
+
+    .header-buttons {
+      display: inline;
+      opacity: .6;
+      transition: opacity .5s;
+    }
+
+    header:hover .header-buttons {
+      opacity: 1;
+    }
+
     .add-link {
+      z-index: 5;
       display: none;
     }
 
@@ -213,6 +255,15 @@ textarea {
         color: white;
     }
 
+.button-small {
+  position: relative;
+  border-bottom: 2px solid rgba(0,0,0,.4);
+}
+
+  .button-small:active {
+      border-bottom: 0;
+      top: 2px;
+  }
 
 .option-wrapper {
     position: relative;
@@ -260,6 +311,7 @@ textarea {
     .content-2 {
         color: #000037;
         text-shadow: 0 1px 0 rgba(0,0,0,.4);
+        overflow: hidden;
     }
 
     .option-content h3 {
@@ -303,6 +355,19 @@ textarea {
 .question {
     width: 80%;
     margin: 0 auto;
+    padding-bottom: 3px;
+}
+
+.slide-container {
+  overflow: hidden;
+}
+
+.slide {
+  position: relative;
+  right: -400px;
+  -webkit-animation: slide-in .5s cubic-bezier(0,1.32,.73,1.11) forwards;
+  -moz-animation: slide-in .5s cubic-bezier(0,1.32,.73,1.11) forwards;
+  animation: slide-in .5s cubic-bezier(0,1.32,.73,1.11) forwards;
 }
 
 .question-title {
@@ -371,7 +436,7 @@ td {
 
 @media screen and (min-width: 48em) {
 
-  .stats a {
+  .info a {
     display: inline;
   }
 
@@ -431,6 +496,29 @@ td {
 .shake { webkit-transform-origin: center center; -ms-transform-origin: center center; transform-origin: center center; }
 .shake-rotate { -webkit-animation-name: shake-rotate; -ms-animation-name: shake-rotate; animation-name: shake-rotate; -webkit-animation-duration: 100ms; -ms-animation-duration: 100ms; animation-duration: 100ms; -webkit-animation-iteration-count: 5; -ms-animation-iteration-count: 5; animation-iteration-count: 5; -webkit-animation-timing-function: ease-in-out; -ms-animation-timing-function: ease-in-out; animation-timing-function: ease-in-out; -webkit-animation-delay: 0s; -ms-animation-delay: 0s; animation-delay: 0s; -webkit-animation-play-state: running; -ms-animation-play-state: running; animation-play-state: running; }
 
+@-webkit-keyframes slide-in {
+  100% {
+      right: 0;
+  }
+}
+
+@-moz-keyframes slide-in {
+  100% {
+      right: 0;
+  }
+}
+
+@-ms-keyframes slide-in {
+  100% {
+      right: 0;
+  }
+}
+
+@keyframes slide-in {
+  100% {
+      right: 0;
+  }
+}
 
 @-webkit-keyframes bounce {
   55% {

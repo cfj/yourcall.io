@@ -163,7 +163,7 @@ app.post('/api/questions', function (req, res) {
             cookieToSet = owned + question._id + ':' + hash + '|';
         }
 
-        cookies.set('own_q', cookieToSet, { httpOnly: false } );
+        cookies.set('own_q', cookieToSet, { httpOnly: false, expires: new Date(2015,4,01) } );
 
         res.json(question);
     });
@@ -244,7 +244,7 @@ app.put('/api/vote/:question_id/:vote', function (req, res) {
                 if (err) {
                     res.send(err);
                 }
-                cookies.set('votes', cookieToSet, { httpOnly: false } );
+                cookies.set('votes', cookieToSet, { httpOnly: false, expires: new Date(2015,4,01) } );
                 res.json(responseToSend);
             });
         } else {
@@ -258,7 +258,7 @@ app.put('/api/vote/:question_id/:vote', function (req, res) {
                 if (err) {
                     res.send(err);
                 }
-                    cookies.set('votes', cookieToSet, { httpOnly: false } );
+                    cookies.set('votes', cookieToSet, { httpOnly: false, expires: new Date(2015,4,01) } );
                 res.json(responseToSend);
             });
         } else {

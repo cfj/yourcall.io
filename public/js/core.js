@@ -28,7 +28,7 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '/partials/notfound.html'
         });
 
-    //$locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 });
 
 app.controller('AllCtrl', ['$scope', '$http', function ($scope, $http) {
