@@ -1,0 +1,23 @@
+<div class="admin-table">
+  <h2>Reported questions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Creator</th>
+        <th>Option 1</th>
+        <th>Option 2</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="question in questions">
+        <td><a ng-href="/{{question.url}}">{{question.title}}</a></td>
+        <td>{{question.creator}}</td>
+        <td>{{question.option_1}}</td>
+        <td>{{question.option_2}}</td>
+        <td><a href="" ng-click="deleteQuestion(question._id)">X</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" ng-app="yourCall" ng-controller="MainCtrl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <title ng-bind="Page.title()">Your Call</title>
+
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-route.min.js"></script>
+    <script src="js/lib/angular-animate.min.js"></script>
+    <script src="js/lib/underscore.js"></script>
+
+    <script src="js/core.js"></script>
+    <script src="js/controllers/app.js"></script>
+    <script src="js/controllers/single.js"></script>
+</head>
+<body>
+
+    <div ng-view class="animtest"></div>
+
+    <footer>
+        <div class="container">
+            <p>A weekend project by <a href="https://twitter.com/cfjsvarden">Jonathan Svärdén</a>.</p>
+            <p>Built with <em>❤</em> on the <a href="http://mean.io/" target="_blank">MEAN</a> stack.</p>
+        </div>
+    </footer>
+</body>
+</html>
