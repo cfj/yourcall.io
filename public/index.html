@@ -7,12 +7,11 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-    <title ng-bind="Page.title()">Your Call</title>
+    <title ng-bind="Page.title()">Your Call.io - let your friends decide</title>
 
     <script src="js/lib/angular.min.js"></script>
     <script src="js/lib/angular-route.min.js"></script>
-    <script src="js/lib/angular-animate.min.js"></script>
-    <script src="js/lib/underscore.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
 
     <script src="js/core.js"></script>
     <script src="js/controllers/app.js"></script>
@@ -20,12 +19,14 @@
 </head>
 <body>
 
-    <div ng-view class="animtest"></div>
+    <div ng-view></div>
 
     <footer>
         <div class="container">
+            
             <p><a href="https://twitter.com/cfjsvarden">Jonathan Svärdén</a>, 2014</p>
             <p>Built with <em>❤</em> on the <a href="http://mean.io/" target="_blank">MEAN</a> stack.</p>
+            
         </div>
     </footer>
 </body>

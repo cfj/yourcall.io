@@ -57,8 +57,56 @@ app.controller('AllCtrl', ['$scope', '$http', function ($scope, $http) {
     
 }]);
 
-app.controller('NewQuestionCtrl', ['$scope', '$http', 'Page', function ($scope, $http, Page) {
+app.controller('NewQuestionCtrl', ['$scope', '$http', '$location', 'Page', function ($scope, $http, $location, Page) {
     Page.setTitle('Ask a question');
+    $scope.submitted = false;
+    //successfull submission
+    $scope.success = false;
+    $scope.errorMessage = '';
+
+    //The object that will hold the data for a new question
+    $scope.formData = {};
+    $scope.formData.isPrivate = false;
+
+
+    //Post a new question to the server
+    $scope.createQuestion = function () {
+        if ($scope.formData.title && $scope.formData.option_1 && $scope.formData.option_2) {
+            if ($scope.formData.title.length > 37) {
+                $scope.errorMessage = 'Please try to shorten your question.';
+            } else if ($scope.formData.option_1.length > 50 || $scope.formData.option_2.length > 50) {
+                $scope.errorMessage = 'Please try to shorten your options.'
+            } else {
+                $scope.submitted = true;
+                $scope.errorMessage = '';
+                $http.post('/api/questions', $scope.formData)
+                    .success(function (data) {
+                        $scope.formData = {};
+                        $scope.success = true;
+                        $scope.error = false;
+                        $scope.newQuestion = data;
+                        //Add the created question to the questions array and redirect to it
+                        $scope.questions.push(data);
+                        $location.path('/' + data.url);
+                    })
+                    .error(function (data) {
+                        console.log('Error: ' + data);
+                    }); 
+            }
+        } else {
+            $scope.errorMessage = 'Please fill in all fields.';
+        }
+    };
+
+
+
+
+
+
+
+
+
+
 }]);
 
 app.controller('ReportedCtrl', ['$scope', '$http', function ($scope, $http) {
@@ -138,7 +186,9 @@ app.directive('slideGraph', function($timeout) {
                     slide();
                 } else {
                     element.on('click', function() {
-                        slide();
+                        if(hasVoted) {
+                            slide();
+                        }
                     });                    
                 }
 

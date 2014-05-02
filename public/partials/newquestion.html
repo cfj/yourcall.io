@@ -1,33 +1,34 @@
-<form>
-    <header>
-        <div class="logo" ng-show="fsdf">
-            YourCall
-        </div>
-        <input type="text" class="question-input" ng-model="formData.title" placeholder="Enter your question...">
-        <input type="text" class="name-input" ng-model="formData.creator" placeholder="Your name (optional)">
-    </header>
-
-    <div class="option-wrapper">
-        <div class="option option-1"></div>
-        <div class="option-content">
-            <textarea ng-model="formData.option_1" placeholder="Option one..."></textarea>
-        </div>
+<header>
+    <div class="logo" ng-show="fsdf">
+        YourCall
     </div>
-    <div class="option-wrapper">
-        <div class="option option-2"></div>
-        <div class="option-content">
-           <textarea ng-model="formData.option_2" placeholder="and option two."></textarea>
-        </div>
-    </div>
+    <input type="text" class="question-input" ng-model="formData.title" placeholder="Enter your question...">
+    <input type="text" class="name-input" ng-model="formData.creator" placeholder="Your name (optional)">
+</header>
 
-    <div class="control-buttons">
-        <div class="error-message" ng-show="errorMessage">
-            <strong>{{errorMessage}}</strong>
-        </div>
-        <a href="" class="button" ng-click="createQuestion()">Create!</a>
+<div class="option-wrapper">
+    <div class="option option-1"></div>
+    <div class="option-content">
+        <textarea ng-model="formData.option_1" placeholder="Option one..."></textarea>
+    </div>
+</div>
+<div class="option-wrapper">
+    <div class="option option-2"></div>
+    <div class="option-content">
+       <textarea ng-model="formData.option_2" placeholder="and option two."></textarea>
+    </div>
+</div>
+
+
+<div class="control-buttons">
+    <div class="error-message" ng-show="errorMessage">
+        <strong>{{errorMessage}}</strong>
+    </div>
+    <a href="" class="button button-disabled" ng-show="submitted">Submitting...</a> <!-- Här kan jag sätta en spinner istället -->
+    <a href="" class="button" ng-hide="submitted" ng-click="createQuestion()">Create!</a>
+    <div class="is-private">
         <label class="private-label"> 
-            <input type="checkbox" ng-model="formData.isPrivate">Private (only people with a link can see this question)
+            <input type="checkbox" ng-model="formData.isPrivate">Private <small>(only people with a link can see this question)</small>
         </label>
     </div>
-
-</form>
+</div>

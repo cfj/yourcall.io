@@ -41,7 +41,7 @@ button {
 body {
   font-family: 'Montserrat', Arial, sans-serif;
   background: slategray;
-  min-width: 415px;
+  min-width: 440px;
 }
 
 h2 {
@@ -50,6 +50,10 @@ h2 {
 
 h3 {
     font-size: 2.6em;
+}
+
+small {
+  font-size: .8em;
 }
 
 a {
@@ -83,7 +87,7 @@ footer {
 }
 
   footer .container {
-    padding-top: 5em;
+    padding-top: 6em;
   }
 
   footer em {
@@ -202,19 +206,42 @@ header {
     }
 
 input[type=text], textarea {
-        background: rgba(0,0,0,.4);
-        border: 2px solid rgba(0,0,0,.1);
-        color: white;
-        padding: .3em;
-    }
+  background: rgba(0,0,0,.4);
+  border: none;
+  border-bottom: 2px solid rgba(0,0,0,.1);
+  color: white;
+  padding: .3em;
+}
+
+::-webkit-input-placeholder {
+   color: rgba(255,255,255,.8);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: rgba(255,255,255,.8);  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: rgba(255,255,255,.8);  
+}
+
+:-ms-input-placeholder {  
+   color: rgba(255,255,255,.8);  
+}
 
 .name-input {
   font-size: 16px;
 }
 
+.is-private {
+  position: relative;
+  width: 382px;
+  margin: 0 auto;
+}
+
 .private-label {
   display: block;
-  position: relative;
+  position: absolute;
   z-index: 20;
   top: 2em;
   cursor: pointer;
@@ -255,6 +282,15 @@ textarea {
         color: white;
     }
 
+    .button-disabled:active {
+      border-bottom: 3px solid rgba(0,0,0,.4);
+      top: 0;
+    }
+
+    .button-disabled {
+      cursor: default;
+    }
+
 .button-small {
   position: relative;
   border-bottom: 2px solid rgba(0,0,0,.4);
@@ -275,7 +311,7 @@ textarea {
 }
 
     .option-wrapper:hover > .option-1 {
-        background: #4274FF;
+        background: #49A7FF;
     }
 
     .option-wrapper:hover > .option-2 {
@@ -313,6 +349,10 @@ textarea {
         text-shadow: 0 1px 0 rgba(0,0,0,.4);
         overflow: hidden;
     }
+
+      .content-2 .percentage {
+        color: #000037;
+      }
 
     .option-content h3 {
         font-size: 2.3em;
