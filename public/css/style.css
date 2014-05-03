@@ -469,6 +469,22 @@ td {
   }
 
 
+.notfound {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  margin: 6em 0;
+}
+
+  .notfound h1 {
+    display: inline-block;
+    font-size: 6em;
+  }
+
+  .notfound a {
+    margin-top: 1em;
+    color: white;
+  }
 
 
 
