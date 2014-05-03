@@ -15,7 +15,7 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
         //$scope.question = $scope.questions[0];
         getTotalVotes();
     } else {
-        $scope.question = _.filter($scope.questions, function (question) {
+        $scope.question = $scope.questions.filter(function (question) {
             return question.url === $routeParams.question_url;
         })[0];
 
@@ -44,7 +44,6 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
         var index = $scope.questions.indexOf(question);
 
         $scope.question = $scope.questions[index];
-        console.log(!$scope.question.hasVoted);
 
         if (!$scope.question.hasVoted) {
             $http.put('/api/vote/' + question._id + '/' + vote)
@@ -54,7 +53,6 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
                         $scope.questions[index]['option_' + vote + '_votes'] += 1;
                         $scope.questions[index].selection = vote;
                         $scope.questions[index].hasVoted = true;
-                        console.log($scope.question.hasVoted);
                         getTotalVotes();
                     }
                 })
@@ -129,8 +127,6 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
             }
         }
 
-        console.log(ownedQuestions);
-
         Page.setTitle($scope.question.title);
 
         if (votedQuestions && votedQuestions.indexOf($scope.question._id) > -1) {
@@ -144,9 +140,5 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
 
         $scope.totalVotes = $scope.question.option_1_votes + $scope.question.option_2_votes;
     }
-
-    $scope.logScope = function () {
-        console.log($scope.questions);
-    };
 
 }]);

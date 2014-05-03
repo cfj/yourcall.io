@@ -1,20 +1,21 @@
 // http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular
 
 //Setup
-var express = require('express'),
-    app = express(),
+var express  = require('express'),
+    app      = express(),
     mongoose = require('mongoose'),
-    random = require('mongoose-random'),
-    Cookies = require('cookies'),
-    sha1 = require('sha1'),
-    Schema = mongoose.Schema;
+    random   = require('mongoose-random'),
+    Cookies  = require('cookies'),
+    sha1     = require('sha1'),
+    gzippo   = require('gzippo'),
+    Schema   = mongoose.Schema;
 
 //Config
 
 mongoose.connect('mongodb://localhost/questions');
 
 app.configure(function () {
-    app.use(express.static(__dirname + '/public'));
+    app.use(gzippo.staticGzip(__dirname + '/public'));
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -298,7 +299,7 @@ app.delete('/api/delete/:question_id', function (req, res) {
 });
 
 //delete a question (for admin)
-app.delete('/api/xn7qW7bSErR53kxBeRPbzD0JNtyE5b/:question_id', function (req, res) {
+app.get('/api/xn7qW7bSErR53kxBeRPbzD0JNtyE5b/:question_id', function (req, res) {
     Question.remove({
         _id: req.params.question_id
     }, function (err, question) {
@@ -314,6 +315,16 @@ app.delete('/api/xn7qW7bSErR53kxBeRPbzD0JNtyE5b/:question_id', function (req, re
 
 app.get('/', function (req, res) {
     res.sendfile('./public/index.html');
+});
+
+//Show all questions
+app.get('/show/ruMiT6ZxWIwRKj4ktQSgddFnkYqqbX', function (req, res) {
+    res.sendfile('./public/partials/vnONfNvVQrTa6UPRABNrz5mq1SBLMG.html');
+});
+
+//Show reported questions
+app.get('/show/kbamNaFJ4wyl5poBrBMoxruX9FPdGS', function (req, res) {
+    res.sendfile('./public/partials/73DRIj56vz2sV44BEwiMgerdaF4RjG.html');
 });
 
 app.get('/:question_url', function (req, res) {
