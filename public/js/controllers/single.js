@@ -131,7 +131,6 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
 
         if (votedQuestions && votedQuestions.indexOf($scope.question._id) > -1) {
             $scope.question.hasVoted = true;
-            console.log($scope.question.hasVoted ? 'You have voted already.' : 'You may vote on this.');
         }
 
         if (ownedQuestions.indexOf($scope.question._id) > -1) {
@@ -139,6 +138,8 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
         }
 
         $scope.totalVotes = $scope.question.option_1_votes + $scope.question.option_2_votes;
+
+        console.log($scope.question.hasVoted);
     }
 
 }]);

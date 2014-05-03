@@ -6,7 +6,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     $routeProvider
         .when('/', {
             templateUrl: '/partials/singlequestion.html',
-            controller: 'SingleQuestionCtrl'
+            controller: 'MainCtrl'  //testa att ha mainctrl här
         })
         .when('/ask', {
             templateUrl: '/partials/newquestion.html',
@@ -163,17 +163,22 @@ app.directive('selfRefresh', ['$location', '$route', function($location,$route){
     }   
 }]);;app.controller('MainCtrl', ['$scope', '$http', '$location', 'Page', function ($scope, $http, $location, Page) {
 
-
     $scope.Page = Page;
 
-
     $scope.questions = [];
+    $scope.question = {
+        title: 'Loading...',
+        option_1: 'Loading...',
+        option_2: 'Loading...',
+        _id: 1234567890
+    };
 
     $http.get('/api/random')
         .success(function (data) {
-            $scope.questions = [];
+            //$scope.questions = [];
             $scope.questions.push(data[0]);
             $scope.question = $scope.questions[0];
+            $location.path('/' + $scope.question.url);
         })
         .error(function (data) {
             console.log('Error: ' + data);
@@ -314,7 +319,6 @@ app.directive('selfRefresh', ['$location', '$route', function($location,$route){
 
         if (votedQuestions && votedQuestions.indexOf($scope.question._id) > -1) {
             $scope.question.hasVoted = true;
-            console.log($scope.question.hasVoted ? 'You have voted already.' : 'You may vote on this.');
         }
 
         if (ownedQuestions.indexOf($scope.question._id) > -1) {
@@ -322,6 +326,8 @@ app.directive('selfRefresh', ['$location', '$route', function($location,$route){
         }
 
         $scope.totalVotes = $scope.question.option_1_votes + $scope.question.option_2_votes;
+
+        console.log($scope.question.hasVoted);
     }
 
 }]);

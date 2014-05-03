@@ -6,7 +6,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     $routeProvider
         .when('/', {
             templateUrl: '/partials/singlequestion.html',
-            controller: 'SingleQuestionCtrl'
+            controller: 'MainCtrl'  //testa att ha mainctrl här
         })
         .when('/ask', {
             templateUrl: '/partials/newquestion.html',
