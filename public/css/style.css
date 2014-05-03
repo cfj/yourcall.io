@@ -40,7 +40,7 @@ button {
 
 body {
   font-family: 'Montserrat', Arial, sans-serif;
-  background: slategray;
+  background: url('../images/bg2.png');
   min-width: 440px;
 }
 
@@ -105,7 +105,7 @@ header {
     position: absolute;
     width: 100%;
     text-align: center;
-    height: 110px;
+    height: auto;
     background: rgba(0, 0, 0, .5);
     z-index: 3;
 }
@@ -152,7 +152,7 @@ header {
 
       .tweet-link {
         color: rgba(255,255,255,.9);
-        padding: 3px 3px 3px 25px;
+        padding: 6px 6px 6px 25px;
         background-image: url('../images/Twitter_logo_white_20px.png');
         background-repeat: no-repeat;
         background-position: 3px 3px;
@@ -165,7 +165,7 @@ header {
         }
 
       .alert {
-        padding: 3px;
+        padding: 6px;
         background: #E5AB24;
         color: #444;
       }
@@ -178,7 +178,7 @@ header {
       .warning {
         background: #D53319;
         color: rgba(255,255,255,.9);
-        padding: 3px;
+        padding: 6px;
       }
 
         .warning:hover {
@@ -187,8 +187,8 @@ header {
         }
 
     .header-buttons {
-      display: inline;
-      opacity: .6;
+      display: block;
+      padding: 1em;
       transition: opacity .5s;
     }
 
@@ -480,6 +480,10 @@ td {
     display: inline;
   }
 
+  header {
+      height: 110px;
+  }
+
   header input.question-input {
     margin-top: .3em;
     font-size: 54px;
@@ -488,6 +492,17 @@ td {
   header input.name-input {
     margin-top: 2em;
   }
+
+  .header-buttons {
+    display: inline;
+    opacity: .6;
+    padding: 0;
+    transition: opacity .5s;
+  }
+
+  .tweet-link {padding: 3px 3px 3px 25px;}
+  .alert {padding: 3px;}
+  .warning {padding: 3px;}
 
   .add-link {
       display: block;
