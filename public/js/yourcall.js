@@ -5,8 +5,8 @@ var app = angular.module('yourCall', ['ngRoute']);
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: '/partials/singlequestion.html',
-            controller: 'MainCtrl'  //testa att ha mainctrl här
+            templateUrl: '/partials/singlequestion.html'
+            //controller: 'MainCtrl'  //testa att ha mainctrl här
         })
         .when('/ask', {
             templateUrl: '/partials/newquestion.html',
@@ -166,19 +166,17 @@ app.directive('selfRefresh', ['$location', '$route', function($location,$route){
     $scope.Page = Page;
 
     $scope.questions = [];
-    $scope.question = {
-        title: 'Loading...',
-        option_1: 'Loading...',
-        option_2: 'Loading...',
-        _id: 1234567890
-    };
 
     $http.get('/api/random')
         .success(function (data) {
             //$scope.questions = [];
             $scope.questions.push(data[0]);
             $scope.question = $scope.questions[0];
-            $location.path('/' + $scope.question.url);
+            
+            if ($location.path() === '/') {
+                $location.path('/' + $scope.question.url);
+            }
+
         })
         .error(function (data) {
             console.log('Error: ' + data);
@@ -196,7 +194,6 @@ app.directive('selfRefresh', ['$location', '$route', function($location,$route){
         .error(function (data) {
             console.log('Error: ' + data);
         });
-
 
     $scope.ownedQuestion = false;
     if (!$routeParams.question_url) {
@@ -250,11 +247,13 @@ app.directive('selfRefresh', ['$location', '$route', function($location,$route){
         }
     };
 
+    $scope.deleteMessage = 'Delete';
     $scope.deleteQuestion = function (id) {
 
         var confirmed = window.confirm('Are you sure?');
 
         if (confirmed) {
+            $scope.deleteMessage = 'Deleting...';
             var verify = '';
 
             if (readCookie('own_q')) {
@@ -270,8 +269,15 @@ app.directive('selfRefresh', ['$location', '$route', function($location,$route){
             $http.delete('/api/delete/' + id + '?verify=' + verify)
                 .success(function () {
                     //Måste ta bort cookien för frågan, för att inte göra cookien för stor
-                    //Redirecta till start när frågan raderats
-                    $location.path('/');
+                    //Hämta en ny fråga och redirecta dit - kan inte förlita mig på nextQuestion eftersom det kan vara samma fråga som den man raderar
+                    $http.get('/api/random')
+                        .success(function (data) {
+                            $location.path('/' + data[0].url)
+                        })
+                        .error(function (data) {
+                            console.log('Error: ' + data);
+                        });
+
                 })
                 .error(function (data) {
                     console.log('Error: ' + data);

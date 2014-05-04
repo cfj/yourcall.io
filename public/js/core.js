@@ -5,8 +5,8 @@ var app = angular.module('yourCall', ['ngRoute']);
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: '/partials/singlequestion.html',
-            controller: 'MainCtrl'  //testa att ha mainctrl här
+            templateUrl: '/partials/singlequestion.html'
+            //controller: 'MainCtrl'  //testa att ha mainctrl här
         })
         .when('/ask', {
             templateUrl: '/partials/newquestion.html',

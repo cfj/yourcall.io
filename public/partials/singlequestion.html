@@ -16,7 +16,7 @@
         <div class="header-buttons">
             <a class="tweet-link button-small" target="_blank" ng-href="https://twitter.com/share?text=Your+call:+{{question.title}}&hashtags=yourcall">Tweet</a>
             <a class="alert button-small" href="" ng-click="reportQuestion(question._id)">{{reportMessage}}</a>
-            <a class="warning button-small" href="" ng-click="deleteQuestion(question._id)" ng-show="ownedQuestion">Delete</a>
+            <a class="warning button-small" href="" ng-click="deleteQuestion(question._id)" ng-show="ownedQuestion">{{deleteMessage}}</a>
         </div>
     </div>
 </header>

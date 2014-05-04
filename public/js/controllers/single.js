@@ -9,7 +9,6 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
             console.log('Error: ' + data);
         });
 
-
     $scope.ownedQuestion = false;
     if (!$routeParams.question_url) {
         //$scope.question = $scope.questions[0];
@@ -62,11 +61,13 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
         }
     };
 
+    $scope.deleteMessage = 'Delete';
     $scope.deleteQuestion = function (id) {
 
         var confirmed = window.confirm('Are you sure?');
 
         if (confirmed) {
+            $scope.deleteMessage = 'Deleting...';
             var verify = '';
 
             if (readCookie('own_q')) {
@@ -82,8 +83,15 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
             $http.delete('/api/delete/' + id + '?verify=' + verify)
                 .success(function () {
                     //Måste ta bort cookien för frågan, för att inte göra cookien för stor
-                    //Redirecta till start när frågan raderats
-                    $location.path('/');
+                    //Hämta en ny fråga och redirecta dit - kan inte förlita mig på nextQuestion eftersom det kan vara samma fråga som den man raderar
+                    $http.get('/api/random')
+                        .success(function (data) {
+                            $location.path('/' + data[0].url)
+                        })
+                        .error(function (data) {
+                            console.log('Error: ' + data);
+                        });
+
                 })
                 .error(function (data) {
                     console.log('Error: ' + data);
