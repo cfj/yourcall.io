@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     },
     cssmin: {
       minify: {
-        src: ['public/css/*.css'],
+        src: ['public/css/style.css'],
         dest: 'public/css/style.min.css',
       }
     }

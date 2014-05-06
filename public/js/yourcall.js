@@ -184,7 +184,7 @@ app.directive('selfRefresh', ['$location', '$route', function($location,$route){
 
 
 
-}]);;app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$location', 'Page', function ($scope, $routeParams, $http, $location, Page) {
+}]);;app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$location', '$window', 'Page', function ($scope, $routeParams, $http, $location, $window, Page) {
 
     $http.get('/api/random')
         .success(function (data) {
@@ -333,7 +333,11 @@ app.directive('selfRefresh', ['$location', '$route', function($location,$route){
 
         $scope.totalVotes = $scope.question.option_1_votes + $scope.question.option_2_votes;
 
-        console.log($scope.question.hasVoted);
     }
+
+    //Google Analytics page tracking
+    $scope.$on('$viewContentLoaded', function(event) {
+        $window.ga('send', 'pageview', { page: $location.path() });
+    });
 
 }]);
