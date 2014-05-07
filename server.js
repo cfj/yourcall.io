@@ -217,7 +217,7 @@ app.get('/api/reported', function (req, res) {
 });
 
 //Vote on a question
-app.put('/api/vote/:question_id/:vote', function (req, res) {
+app.put('/api/vote/:question_url/:vote', function (req, res) {
 
     //cookie test
     var cookies = new Cookies(req, res);
@@ -227,9 +227,9 @@ app.put('/api/vote/:question_id/:vote', function (req, res) {
         responseToSend = {"success": "true"};
 
     if (!votes) {
-        cookieToSet = req.params.question_id;
-    } else if (votes.indexOf(req.params.question_id) === -1) {
-        cookieToSet = votes + ':' + req.params.question_id;
+        cookieToSet = req.params.question_url;
+    } else if (votes.indexOf(req.params.question_url) === -1) {
+        cookieToSet = votes + ':' + req.params.question_url;
     } else {
         responseToSend = {"success": "false"};
     }
@@ -239,7 +239,7 @@ app.put('/api/vote/:question_id/:vote', function (req, res) {
 
     if (req.params.vote === '1'){
         if (cookieToSet) {
-            Question.findOneAndUpdate({"_id": req.params.question_id},
+            Question.findOneAndUpdate({"url": req.params.question_url},
                 {$inc: {"option_1_votes" : 1}},
              function (err, question) {
                 if (err) {
@@ -253,7 +253,7 @@ app.put('/api/vote/:question_id/:vote', function (req, res) {
         }
     } else if (req.params.vote === '2') {
         if (cookieToSet) {
-            Question.findOneAndUpdate({"_id": req.params.question_id},
+            Question.findOneAndUpdate({"url": req.params.question_url},
                 {$inc: {"option_2_votes" : 1}},
              function (err, question) {
                 if (err) {

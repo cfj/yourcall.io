@@ -45,7 +45,7 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
         $scope.question = $scope.questions[index];
 
         if (!$scope.question.hasVoted) {
-            $http.put('/api/vote/' + question._id + '/' + vote)
+            $http.put('/api/vote/' + question.url + '/' + vote)
                 .success(function (data) {
                     //Update the vote count on the model if the vote was successful
                     if (data.success === 'true') {
@@ -137,7 +137,7 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
 
         Page.setTitle($scope.question.title);
 
-        if (votedQuestions && votedQuestions.indexOf($scope.question._id) > -1) {
+        if (votedQuestions && votedQuestions.indexOf($scope.question.url) > -1) {
             $scope.question.hasVoted = true;
         }
 
