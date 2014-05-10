@@ -11,6 +11,15 @@ module.exports = function(grunt) {
         dest: 'public/js/<%= pkg.name %>.js'
       }
     },
+    cssmin: {
+        minify: {
+          expand: true,
+          cwd: 'public/css/',
+          src: ['*.css', '!*.min.css'],
+          dest: 'public/css/',
+          ext: '.min.css'
+        }
+    },
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
@@ -21,19 +30,67 @@ module.exports = function(grunt) {
         }
       }
     },
-    cssmin: {
-      minify: {
-        src: ['public/css/style.css'],
-        dest: 'public/css/style.min.css',
+    watch: {
+      options: {
+        livereload: 1337
+      },
+      sass: {
+        files: ['public/css/**/*.scss'],
+        tasks: ['sass', 'autoprefixer'],
+        options: {
+          spawn: false
+        }
+      },
+      css: {
+        files: ['public/css/style.css'],
+        tasks: ['cssmin'],
+        options: {
+          spawn: false
+        }
+      },
+      scripts: {
+        files: ['public/js/**/*.js'],
+        tasks: ['concat', 'uglify'],
+        options: {
+          spawn: false
+        }
+      },
+      views: {
+        files: ['public/partials/**/*.html', 'public/index.html'],
+        options: {
+          spawn: false
+        }
       }
+    },
+    sass: {
+      dist: {
+        options: {
+          style: 'compressed'
+        },
+        files: {
+          'public/css/main.min.css': 'public/css/main.scss'
+        }
     }
-  });
+  },
+  autoprefixer: {
+    options: {
+      browsers: ['> 1%', 'last 10 versions', 'ie 8', 'ie 9']
+    },
+    files: {
+      'public/css/main.min.css': 'public/css/main.min.css'
+    }
+  }
+});
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-autoprefixer');
 
 
-  grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
+
+  grunt.registerTask('default', ['concat', 'cssmin', 'uglify', 'sass', 'watch', 'autoprefixer']);
 
 };

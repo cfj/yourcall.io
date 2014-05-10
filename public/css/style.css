@@ -355,7 +355,7 @@ textarea {
       }
 
     .option-content h3 {
-        font-size: 2.3em;
+        font-size: 1.5em; 
     }
 
     .percentage {
@@ -488,6 +488,11 @@ td {
     color: white;
   }
 
+@media screen and (min-width: 38em) {
+    .option-content h3 {
+        font-size: 2.3em; 
+    }
+}
 
 @media screen and (min-width: 58em) {
 
