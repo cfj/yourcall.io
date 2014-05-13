@@ -311,6 +311,17 @@ app.get('/api/xn7qW7bSErR53kxBeRPbzD0JNtyE5b/:question_id', function (req, res) 
     });
 });
 
+//make a question private (for admin)
+app.get('/api/QHVNaLzGYZoUwY3A202Ia5G4S5vPtg/:question_id', function (req, res) {
+    Question.findOneAndUpdate({ _id: req.params.question_id}, { isPrivate: true }, function (err, question) {
+        if (err) {
+            res.send(err);
+        }
+
+        res.json({"success": "true"});
+    });
+});
+
 //Application
 
 app.get('/', function (req, res) {

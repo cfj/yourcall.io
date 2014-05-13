@@ -41,7 +41,7 @@
           <td>{{question.date | date}}</td>
           <td>{{question.option_1}}</td>
           <td>{{question.option_2}}</td>
-          <td>{{question.isPrivate}}</td>
+          <td>{{question.isPrivate}} <a ng-href="/api/QHVNaLzGYZoUwY3A202Ia5G4S5vPtg/{{question._id}}" ng-show="!question.isPrivate">Make</a></td>
           <td><a href="" ng-href="/api/xn7qW7bSErR53kxBeRPbzD0JNtyE5b/{{question._id}}">X</a></td>
         </tr>
       </tbody>
