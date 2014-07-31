@@ -20,7 +20,6 @@ app.configure(function () {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(function noCache(req, res, next){
-
         res.header("Cache-Control", "no-cache, no-store, must-revalidate");
         res.header("Pragma", "no-cache");
         res.header("Expires",0);
@@ -98,20 +97,6 @@ app.get('/api/random', function (req, res) {
 
         res.json(question);
     });
-    
-    
-    
-
-    //Old random
-    /*
-    Question.findRandom(function (err, question) {
-        if (err) {
-            res.send(err);
-        }
-
-        res.json(question);
-    });
-    */
 
 });
 
@@ -138,8 +123,6 @@ app.post('/api/questions', function (req, res) {
 
     var owned = cookies.get('own_q'),
         cookieToSet = '';
-
-
 
     var urlId = generateId(6),
         creator = req.body.creator ? req.body.creator : 'Anonymous';
@@ -169,27 +152,6 @@ app.post('/api/questions', function (req, res) {
         res.json(question);
     });
 
-
-
-    /*
-    var urlId = generateId(6),
-        creator = req.body.creator ? req.body.creator : 'Anonymous';
-
-    Question.create({
-        title: req.body.title,
-        url: urlId,
-        creator: creator,
-        option_1: req.body.option_1,
-        option_2: req.body.option_2,
-        isPrivate: req.body.isPrivate
-    }, function (err, question) {
-        if (err) {
-            res.send(err);
-        }
-
-        res.json(question);
-    });
-    */
 });
 
 app.put('/api/report/:question_id', function (req, res) {
@@ -226,6 +188,10 @@ app.put('/api/vote/:question_url/:vote', function (req, res) {
         cookieToSet = '',
         responseToSend = {"success": "true"};
 
+    var expiryDate = new Date();
+
+    expiryDate.setDate(expiryDate.getDate() + 365);
+
     if (!votes) {
         cookieToSet = req.params.question_url;
     } else if (votes.indexOf(req.params.question_url) === -1) {
@@ -233,9 +199,6 @@ app.put('/api/vote/:question_url/:vote', function (req, res) {
     } else {
         responseToSend = {"success": "false"};
     }
-
-
-
 
     if (req.params.vote === '1'){
         if (cookieToSet) {
@@ -245,7 +208,7 @@ app.put('/api/vote/:question_url/:vote', function (req, res) {
                 if (err) {
                     res.send(err);
                 }
-                cookies.set('votes', cookieToSet, { httpOnly: false, expires: new Date(2015,4,01) } );
+                cookies.set('votes', cookieToSet, { httpOnly: false, expires: expiryDate } );
                 res.json(responseToSend);
             });
         } else {
@@ -259,7 +222,7 @@ app.put('/api/vote/:question_url/:vote', function (req, res) {
                 if (err) {
                     res.send(err);
                 }
-                    cookies.set('votes', cookieToSet, { httpOnly: false, expires: new Date(2015,4,01) } );
+                    cookies.set('votes', cookieToSet, { httpOnly: false, expires: expiryDate } );
                 res.json(responseToSend);
             });
         } else {
@@ -322,8 +285,8 @@ app.get('/api/QHVNaLzGYZoUwY3A202Ia5G4S5vPtg/:question_id', function (req, res) 
     });
 });
 
-//Application
 
+//App routes
 app.get('/', function (req, res) {
     res.sendfile('./public/index.html');
 });
@@ -341,12 +304,6 @@ app.get('/show/kbamNaFJ4wyl5poBrBMoxruX9FPdGS', function (req, res) {
 app.get('/:question_url', function (req, res) {
     res.redirect('/#' + req.params.question_url);
 });
-
-/*
-app.get('*', function (req, res) {
-    res.redirect('/');
-});
-*/
 
 //Listen (start app with node server.js)
 

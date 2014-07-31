@@ -11,8 +11,7 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
 
     $scope.ownedQuestion = false;
     if (!$routeParams.question_url) {
-        //$scope.question = $scope.questions[0];
-        getTotalVotes();
+        initQuestion();
     } else {
         $scope.question = $scope.questions.filter(function (question) {
             return question.url === $routeParams.question_url;
@@ -27,14 +26,14 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
                     $scope.questions.unshift(data);
                     //Set the current question to the one requested
                     $scope.question = data;
-                    getTotalVotes();
+                    initQuestion();
                 })
                 .error(function (data) {
                     console.log('Error: ' + data);
                     $location.path('/oops/notfound');
                 });
         } else {
-            getTotalVotes();
+            initQuestion();
         }
     }
 
@@ -52,7 +51,7 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
                         $scope.questions[index]['option_' + vote + '_votes'] += 1;
                         $scope.questions[index].selection = vote;
                         $scope.questions[index].hasVoted = true;
-                        getTotalVotes();
+                        initQuestion();
                     }
                 })
                 .error(function (data) {
@@ -123,7 +122,7 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
     }
 
     
-    function getTotalVotes () {
+    function initQuestion() {
         var ownedQuestions = '',
             votedQuestions = readCookie('votes');
 

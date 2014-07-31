@@ -406,7 +406,7 @@ textarea {
 .slide {
   position: relative;
   right: -400px;
-  -webkit-animation: slide-in .2s cubic-bezier(0,1.32,.73,1.11) 0s forwards;
+  -webkit-animation: slide-in .5s cubic-bezier(0,1.32,.73,1.11) 0s forwards;
   -moz-animation: slide-in .5s cubic-bezier(0,1.32,.73,1.11) 0s forwards;
   animation: slide-in .5s cubic-bezier(0,1.32,.73,1.11) 0s forwards;
 }
