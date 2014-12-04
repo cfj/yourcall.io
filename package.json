@@ -1,29 +1,32 @@
 {
   "name": "your-call",
   "version": "0.0.2",
-  "description": "tset",
-  "main": "Gruntfile.js",
-  "dependencies": {
-    "grunt": "~0.4.4",
+  "description": "n/a",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonathan Svärdén",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
     "express": "~3.4.8",
     "cookies": "~0.4.0",
-    "grunt-contrib-concat": "~0.4.0",
-    "grunt-contrib-watch": "~0.6.1",
     "gzippo": "~0.2.0",
-    "grunt-contrib-uglify": "~0.4.0",
-    "grunt-contrib-cssmin": "~0.9.0",
     "sha1": "~1.1.0",
     "mongoose": "~3.6.20",
     "mongoose-random": "~0.0.2",
-    "grunt-autoprefixer": "~0.7.3",
-    "grunt-contrib-sass": "~0.7.3",
-    "cookie-parser": "~1.0.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "cfj",
-  "license": "BSD-2-Clause"
+    "cookie-parser": "~1.0.1",
+    "gulp-file-include": "~0.5.1",
+    "gulp-concat": "~2.4.1",
+    "gulp-connect": "~2.0.6",
+    "gulp-uglify": "~1.0.1",
+    "gulp-rename": "~1.2.0",
+    "gulp-autoprefixer": "~1.0.1",
+    "gulp-ruby-sass": "~0.7.1",
+    "gulp-minify-html": "~0.1.6",
+    "gulp-minify-css": "~0.3.11",
+    "gulp-imagemin": "~1.2.0",
+    "gulp": "~3.8.10",
+    "gulp-ng-annotate": "~0.4.0"
+  }
 }
