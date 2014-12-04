@@ -15,7 +15,7 @@ var express  = require('express'),
 mongoose.connect('mongodb://localhost/questions');
 
 app.configure(function () {
-    app.use(gzippo.staticGzip(__dirname + '/public'));
+    app.use(gzippo.staticGzip(__dirname + '/dist'));
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -288,17 +288,17 @@ app.get('/api/QHVNaLzGYZoUwY3A202Ia5G4S5vPtg/:question_id', function (req, res) 
 
 //App routes
 app.get('/', function (req, res) {
-    res.sendfile('./public/index.html');
+    res.sendfile('./dist/index.html');
 });
 
 //Show all questions
 app.get('/show/ruMiT6ZxWIwRKj4ktQSgddFnkYqqbX', function (req, res) {
-    res.sendfile('./public/partials/vnONfNvVQrTa6UPRABNrz5mq1SBLMG.html');
+    res.sendfile('./dist/partials/vnONfNvVQrTa6UPRABNrz5mq1SBLMG.html');
 });
 
 //Show reported questions
 app.get('/show/kbamNaFJ4wyl5poBrBMoxruX9FPdGS', function (req, res) {
-    res.sendfile('./public/partials/73DRIj56vz2sV44BEwiMgerdaF4RjG.html');
+    res.sendfile('./dist/partials/73DRIj56vz2sV44BEwiMgerdaF4RjG.html');
 });
 
 app.get('/:question_url', function (req, res) {

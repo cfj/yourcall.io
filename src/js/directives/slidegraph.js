@@ -43,7 +43,7 @@ app.directive('slideGraph', function($timeout) {
                         if(hasVoted) {
                             slide();
                         }
-                    });                    
+                    });
                 }
 
             });

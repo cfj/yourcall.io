@@ -16,17 +16,13 @@ var paths = {
     js: 'src/js',
     dist: 'dist',
     html: 'src/partials',
-    index: 'src/index.html'
+    index: 'src/index.html',
+    images: 'src/images'
 };
 
-var filesToMove = [
-    './src/images/*.*',
-    './src/*.*'
-];
-
-gulp.task('copy', function() {
-    return gulp.src(filesToMove, { base: './' })
-    .pipe(gulp.dest(paths.dist));
+gulp.task('images', function() {
+    return gulp.src(path.join(paths.images, '*.*'))
+    .pipe(gulp.dest(path.join(paths.dist, 'images')));
 });
 
 gulp.task('libscripts', function() {
@@ -35,12 +31,9 @@ gulp.task('libscripts', function() {
 });
 
 gulp.task('scripts', ['libscripts'] ,function() {
-    return gulp.src([path.join(paths.js, '/*.js'), '!/lib/*.js'])
+    return gulp.src([path.join(paths.js, '/**/*.js'), '!src/js/lib/*.js'])
     .pipe(concat('all.min.js'))
-    .pipe(ngAnnotate({
-        'single_quotes': true,
-        'sourcemap': true
-    }))
+    .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(gulp.dest(path.join(paths.dist, 'js')));
 });
@@ -48,14 +41,17 @@ gulp.task('scripts', ['libscripts'] ,function() {
 gulp.task('index', function() {
     return gulp.src(paths.index)
     .pipe(minifyhtml({
-        conditionals: true
+        conditionals: true,
+        empty: true
     }))
     .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('html', function() {
     return gulp.src(path.join(paths.html, '/**/*.html'))
-    .pipe(minifyhtml())
+    .pipe(minifyhtml({
+        empty: true
+    }))
     .pipe(gulp.dest(path.join(paths.dist, 'partials')));
 });
 
@@ -78,6 +74,6 @@ gulp.task('watch', function() {
     gulp.watch('src/index.html', ['index']);
 });
 
-gulp.task('default', ['html', 'sass', 'scripts', 'watch'], function() {
+gulp.task('default', ['index', 'html', 'sass', 'scripts', 'watch'], function() {
 
 });
