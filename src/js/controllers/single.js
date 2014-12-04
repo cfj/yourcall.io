@@ -1,4 +1,4 @@
-app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$location', '$window', 'pageFactory', 'questionService', function ($scope, $routeParams, $http, $location, $window, pageFactory, questionService) {
+app.controller('SingleQuestionCtrl', function ($scope, $routeParams, $http, $location, $window, pageFactory, questionService) {
 
     questionService.getRandomQuestion()
         .success(function (data) {
@@ -150,4 +150,4 @@ app.controller('SingleQuestionCtrl', ['$scope', '$routeParams', '$http', '$locat
         $window.ga('send', 'pageview', { page: $location.path() });
     });
 
-}]);
+});

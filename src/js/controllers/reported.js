@@ -1,4 +1,4 @@
-app.controller('ReportedCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('ReportedCtrl', function ($scope, $http) {
     $http.get('/api/reported')
         .success(function (data) {
             $scope.questions = data;
@@ -6,4 +6,4 @@ app.controller('ReportedCtrl', ['$scope', '$http', function ($scope, $http) {
         .error(function (data) {
             console.log('Error: ' + data);
         });    
-}]);
+});

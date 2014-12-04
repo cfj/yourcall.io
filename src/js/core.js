@@ -1,6 +1,6 @@
 var app = angular.module('yourCall', ['ngRoute']);
 
-app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/partials/singlequestion.html'
@@ -18,4 +18,4 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         });
 
     $locationProvider.html5Mode(true);
-}]);
+});

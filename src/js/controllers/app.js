@@ -1,4 +1,4 @@
-app.controller('MainCtrl', ['$scope', '$http', '$location', 'pageFactory', function ($scope, $http, $location, pageFactory) {
+app.controller('MainCtrl', function ($scope, $http, $location, pageFactory) {
 
     $scope.page = pageFactory;
 
@@ -19,6 +19,4 @@ app.controller('MainCtrl', ['$scope', '$http', '$location', 'pageFactory', funct
             console.log('Error: ' + data);
         });
 
-
-
-}]);
+});

@@ -1,4 +1,4 @@
-app.directive('slideGraph', ['$timeout', function($timeout) {
+app.directive('slideGraph', function($timeout) {
 
     return {
         restrict: 'A',
@@ -49,4 +49,4 @@ app.directive('slideGraph', ['$timeout', function($timeout) {
             });
         }
     }
-}]);
+});

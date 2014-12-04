@@ -1,4 +1,4 @@
-app.controller('NewQuestionCtrl', ['$scope', '$http', '$location', 'pageFactory', function ($scope, $http, $location, pageFactory) {
+app.controller('NewQuestionCtrl', function ($scope, $http, $location, pageFactory) {
     pageFactory.setTitle('Ask a question');
     $scope.submitted = false;
     $scope.errorMessage = '';
@@ -39,4 +39,4 @@ app.controller('NewQuestionCtrl', ['$scope', '$http', '$location', 'pageFactory'
         }
     };
 
-}]);
+});

@@ -8,4 +8,4 @@ app.controller('AllCtrl', function ($scope, $http) {
             console.log('Error: ' + data);
         });
     
-}]);
+});
