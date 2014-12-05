@@ -7,7 +7,7 @@ app.directive('slideGraph', function($timeout) {
         },
         link: function(scope, element, attrs) {
 
-            scope.$watch('voted', function (hasVoted) {
+            scope.$watch('voted', function(hasVoted) {
                 
                 var result1    = document.getElementById('result-1'),
                     result2    = document.getElementById('result-2'),
@@ -17,8 +17,8 @@ app.directive('slideGraph', function($timeout) {
                     result1Value,
                     result2Value;    
 
-                function slide () {
-                    $timeout(function () {
+                function slide() {
+                    $timeout(function() {
                         result1Value = result1.textContent.replace('%', '') + 'vh',
                         result2Value = result2.textContent.replace('%', '') + 'vh';
 
