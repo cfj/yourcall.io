@@ -1,7 +1,7 @@
 angular.module('yourcall:services', []);
 angular.module('yourcall:directives', []);
 
-angular.module('yourcall:app', ['yourcall:services', 'yourcall:directives', 'ngRoute'])
+angular.module('yourcall:app', ['yourcall:services', 'yourcall:directives', 'ngRoute', 'ngCookies'])
 .config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
@@ -20,4 +20,10 @@ angular.module('yourcall:app', ['yourcall:services', 'yourcall:directives', 'ngR
         });
 
     $locationProvider.html5Mode(true);
+})
+.run(function ($rootScope, $window, $location) {
+    //Google Analytics page tracking
+    $rootScope.$on('$viewContentLoaded', function(event) {
+        $window.ga('send', 'pageview', { page: $location.path() });
+    });
 });

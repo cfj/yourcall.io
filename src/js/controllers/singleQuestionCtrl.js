@@ -3,14 +3,14 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
     questionService.getRandomQuestion()
         .success(function (data) {
             $scope.nextQuestion = data[0];
-            console.log(data);
+            console.log($scope.nextQuestion);
         });
 
     $scope.ownedQuestion = false;
     if (!$routeParams.question_url) {
         initQuestion();
     } else {
-        $scope.question = $scope.questions.filter(function (question) {
+        $scope.question = questionService.fetchedQuestions.filter(function (question) {
             return question.url === $routeParams.question_url;
         })[0];
 
@@ -20,7 +20,7 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
             $http.get('/api/questions/' + $routeParams.question_url)
                 .success(function (data) {
                     //Add the question to the list
-                    $scope.questions.unshift(data);
+                    questionService.fetchedQuestions.unshift(data);
                     //Set the current question to the one requested
                     $scope.question = data;
                     initQuestion();
@@ -36,18 +36,18 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
 
     //Send a PUT request to the server to increment the vote count for the question
     $scope.vote = function (question, vote) {
-        var index = $scope.questions.indexOf(question);
+        var index = questionService.fetchedQuestions.indexOf(question);
 
-        $scope.question = $scope.questions[index];
+        $scope.question = questionService.fetchedQuestions[index];
 
         if (!$scope.question.hasVoted) {
             $http.put('/api/vote/' + question.url + '/' + vote)
                 .success(function (data) {
                     //Update the vote count on the model if the vote was successful
                     if (data.success === 'true') {
-                        $scope.questions[index]['option_' + vote + '_votes'] += 1;
-                        $scope.questions[index].selection = vote;
-                        $scope.questions[index].hasVoted = true;
+                        questionService.fetchedQuestions['option_' + vote + '_votes'] += 1;
+                        questionService.fetchedQuestions.selection = vote;
+                        questionService.fetchedQuestions.hasVoted = true;
                         initQuestion();
                     }
                 })
@@ -144,10 +144,5 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
         $scope.totalVotes = $scope.question.option_1_votes + $scope.question.option_2_votes;
 
     }
-
-    //Google Analytics page tracking
-    $scope.$on('$viewContentLoaded', function(event) {
-        $window.ga('send', 'pageview', { page: $location.path() });
-    });
 
 });

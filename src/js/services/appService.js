@@ -1,8 +1,10 @@
 angular.module('yourcall:services').factory('appService', function () {
 
     var appService = {
-        BASE_PAGE_TITLE: 'YourCall.io',
-        QUESTION_PAGE_TITLE: 'Your Call: '
+        cookieNames: {
+            OWNED_QUESTIONS: 'own_q',
+            VOTES: 'votes'
+        }
     };
 
     return appService;

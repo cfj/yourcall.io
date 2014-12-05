@@ -1,22 +1,16 @@
-angular.module('yourcall:app').controller('MainCtrl', function ($scope, $http, $location, pageService) {
+angular.module('yourcall:app').controller('MainCtrl', function ($scope, $http, $location, pageService, questionService, utilityService) {
 
-    $scope.title = pageService.getTitle();
+    $scope.title = pageService.getTitle;
 
-    $scope.questions = [];
+    utilityService.readCookie('votes');
 
-    $http.get('/api/random')
-        .success(function (data) {
-            //$scope.questions = [];
-            $scope.questions.push(data[0]);
-            $scope.question = $scope.questions[0];
-            
-            if ($location.path() === '/') {
-                $location.path('/' + $scope.question.url);
-            }
+    questionService.getRandomQuestion().then(function (response) {
+        $scope.question = response.data[0];
+        questionService.fetchedQuestions.push(response.data[0]);
 
-        })
-        .error(function (data) {
-            console.log('Error: ' + data);
-        });
+        if ($location.path() === '/') {
+            $location.path('/' + $scope.question.url);
+        }
+    });
 
 });
