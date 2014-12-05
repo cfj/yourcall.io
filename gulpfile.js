@@ -29,7 +29,7 @@ gulp.task('libscripts', function() {
     .pipe(gulp.dest(path.join(paths.dist, 'js/lib')));
 });
 
-gulp.task('scripts', ['libscripts'] ,function() {
+gulp.task('scripts', ['libscripts'], function() {
     return gulp.src([path.join(paths.js, '/**/*.js'), '!src/js/lib/*.js'])
     .pipe(sourcemaps.init())
     .pipe(concat('all.min.js'))
@@ -37,6 +37,14 @@ gulp.task('scripts', ['libscripts'] ,function() {
     .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(path.join(paths.dist, 'js')));
+});
+
+gulp.task('distscripts', ['libscripts'], function() {
+   return gulp.src([path.join(paths.js, '/**/*.js'), '!src/js/lib/*.js'])
+   .pipe(concat('all.min.js'))
+   .pipe(ngAnnotate())
+   .pipe(uglify())
+   .pipe(gulp.dest(path.join(paths.dist, 'js'))); 
 });
 
 gulp.task('index', function() {
@@ -48,7 +56,7 @@ gulp.task('index', function() {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('html', function() {
+gulp.task('html', ['index'], function() {
     return gulp.src(path.join(paths.html, '/**/*.html'))
     .pipe(minifyhtml({
         empty: true
@@ -75,6 +83,5 @@ gulp.task('watch', function() {
     gulp.watch('src/index.html', ['index']);
 });
 
-gulp.task('default', ['index', 'html', 'sass', 'scripts', 'watch'], function() {
-
-});
+gulp.task('default', ['html', 'sass', 'scripts', 'watch'], function() {});
+gulp.task('dist', ['html', 'sass', 'distscripts'], function() {})
