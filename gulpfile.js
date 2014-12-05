@@ -4,12 +4,11 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var sass = require('gulp-ruby-sass');
-var connect = require('gulp-connect');
-var fileinclude = require('gulp-file-include');
 var autoprefixer = require('gulp-autoprefixer');
 var minifycss = require('gulp-minify-css');
 var minifyhtml = require('gulp-minify-html');
 var ngAnnotate = require('gulp-ng-annotate');
+var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {
     sass: 'src/css',
@@ -32,9 +31,11 @@ gulp.task('libscripts', function() {
 
 gulp.task('scripts', ['libscripts'] ,function() {
     return gulp.src([path.join(paths.js, '/**/*.js'), '!src/js/lib/*.js'])
+    .pipe(sourcemaps.init())
     .pipe(concat('all.min.js'))
     .pipe(ngAnnotate())
     .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(path.join(paths.dist, 'js')));
 });
 
