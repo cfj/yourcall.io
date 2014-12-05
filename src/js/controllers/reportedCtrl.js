@@ -1,4 +1,4 @@
-app.controller('ReportedCtrl', function ($scope, $http) {
+angular.module('yourcall:app').controller('ReportedCtrl', function ($scope, $http) {
     $http.get('/api/reported')
         .success(function (data) {
             $scope.questions = data;

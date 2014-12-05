@@ -1,4 +1,4 @@
-app.controller('SingleQuestionCtrl', function ($scope, $routeParams, $http, $location, $window, pageFactory, questionService) {
+angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope, $routeParams, $http, $location, $window, pageService, questionService) {
 
     questionService.getRandomQuestion()
         .success(function (data) {
@@ -131,7 +131,7 @@ app.controller('SingleQuestionCtrl', function ($scope, $routeParams, $http, $loc
             }
         }
 
-        pageFactory.setTitle($scope.question.title);
+        pageService.setTitle($scope.question.title);
 
         if (votedQuestions && votedQuestions.indexOf($scope.question.url) > -1) {
             $scope.question.hasVoted = true;

@@ -1,4 +1,4 @@
-angular.module('yourCall').factory('questionService', ['$http', function ($http) {
+angular.module('yourcall:services').factory('questionService', ['$http', function ($http) {
     var questionService = {};
 
     questionService.getRandomQuestion = function () {

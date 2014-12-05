@@ -1,6 +1,8 @@
-var app = angular.module('yourCall', ['ngRoute']);
+angular.module('yourcall:services', []);
+angular.module('yourcall:directives', []);
 
-app.config(function ($routeProvider, $locationProvider) {
+angular.module('yourcall:app', ['yourcall:services', 'yourcall:directives', 'ngRoute'])
+.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/partials/singlequestion.html'

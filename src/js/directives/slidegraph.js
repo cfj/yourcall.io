@@ -1,4 +1,4 @@
-app.directive('slideGraph', function($timeout) {
+angular.module('yourcall:directives').directive('slideGraph', function($timeout) {
 
     return {
         restrict: 'A',

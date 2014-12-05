@@ -1,4 +1,4 @@
-app.controller('AllCtrl', function ($scope, $http) {
+angular.module('yourcall:app').controller('AllCtrl', function ($scope, $http) {
     
     $http.get('/api/questions')
         .success(function (data) {

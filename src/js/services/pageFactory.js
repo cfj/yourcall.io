@@ -1,7 +1,16 @@
-app.factory('pageFactory', function(){
-  var title = 'YourCall.io';
-  return {
-    title: function() { return title; },
-    setTitle: function(newTitle) { title = 'Your Call: ' + newTitle; }
-  };
+angular.module('yourcall:services').factory('pageService', function (appService){
+
+    var pageService = {};
+
+    var title = appService.BASE_PAGE_TITLE;
+
+    pageService.getTitle = function () {
+        return title;
+    };
+
+    pageService.setTitle = function (pageTitle) {
+        title = appService.QUESTION_PAGE_TITLE + pageTitle;
+    };
+
+    return pageService;
 });

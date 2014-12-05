@@ -1,5 +1,5 @@
-app.controller('NewQuestionCtrl', function ($scope, $http, $location, pageFactory) {
-    pageFactory.setTitle('Ask a question');
+angular.module('yourcall:app').controller('NewQuestionCtrl', function ($scope, $http, $location, pageService) {
+    pageService.setTitle('Ask a question');
     $scope.submitted = false;
     $scope.errorMessage = '';
 

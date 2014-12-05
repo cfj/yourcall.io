@@ -1,6 +1,6 @@
-app.controller('MainCtrl', function ($scope, $http, $location, pageFactory) {
+angular.module('yourcall:app').controller('MainCtrl', function ($scope, $http, $location, pageService) {
 
-    $scope.page = pageFactory;
+    $scope.title = pageService.getTitle();
 
     $scope.questions = [];
 
