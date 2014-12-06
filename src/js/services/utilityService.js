@@ -4,7 +4,7 @@ angular.module('yourcall:services').factory('utilityService', function ($cookies
 
     utilityService.readCookie = function (name) {
         var nameEQ = name + '=';
-        var ca = $cookies[name].split(';');
+        var ca = document.cookie.split(';');
 
         for (var i=0; i < ca.length; i++) {
             var c = ca[i];
@@ -12,9 +12,8 @@ angular.module('yourcall:services').factory('utilityService', function ($cookies
             if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
         }
 
-        return null;        
+        return null;
     };
 
     return utilityService;
-
 });

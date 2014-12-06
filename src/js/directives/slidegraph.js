@@ -8,7 +8,7 @@ angular.module('yourcall:directives').directive('slideGraph', function($timeout)
         link: function(scope, element, attrs) {
 
             scope.$watch('voted', function(hasVoted) {
-                
+               
                 var result1    = document.getElementById('result-1'),
                     result2    = document.getElementById('result-2'),
                     option1    = document.querySelector('.option-1'),
@@ -17,7 +17,7 @@ angular.module('yourcall:directives').directive('slideGraph', function($timeout)
                     result1Value,
                     result2Value;    
 
-                function slide() {
+                var slide = function () {
                     $timeout(function() {
                         result1Value = result1.textContent.replace('%', '') + 'vh',
                         result2Value = result2.textContent.replace('%', '') + 'vh';

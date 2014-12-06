@@ -1,12 +1,40 @@
-angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope, $routeParams, $http, $location, $window, pageService, questionService) {
+angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope, $routeParams, questionService, UITextService) {
 
-    questionService.getRandomQuestion()
-        .success(function (data) {
-            $scope.nextQuestion = data[0];
-            console.log($scope.nextQuestion);
+    $scope.reportMessage = UITextService.REPORT;
+    $scope.deleteMessage = UITextService.DELETE;
+
+    if($routeParams.question_url) {
+        questionService.getQuestion($routeParams.question_url).success(function (question) {
+            $scope.question = question;
+            $scope.isOwnedQuestion = question.owned;
+            $scope.totalVotes = question.totalVotes;
         });
+    }
 
-    $scope.ownedQuestion = false;
+    questionService.getRandomQuestion().success(function (data) {
+        $scope.nextQuestion = data[0];
+    });
+
+    $scope.deleteQuestion = function (questionId) {
+        $scope.deleteMessage = UITextService.PENDING_DELETE;
+
+        questionService.deleteQuestion(questionId).success(function (question) {
+            $scope.question = question;
+        });
+    };
+
+    $scope.vote = function (question, vote) {
+        questionService.voteOnQuestion(question, vote).success(function (response) {
+            $scope.totalVotes = question.option_1_votes + question.option_2_votes;
+        });
+    };
+
+    $scope.reportQuestion = function (id) {
+        $scope.reportMessage = UITextService.REPORTED;
+        questionService.reportQuestion(id);
+    };
+
+    /*$scope.ownedQuestion = false;
     if (!$routeParams.question_url) {
         initQuestion();
     } else {
@@ -48,6 +76,7 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
                         questionService.fetchedQuestions['option_' + vote + '_votes'] += 1;
                         questionService.fetchedQuestions.selection = vote;
                         questionService.fetchedQuestions.hasVoted = true;
+                        $scope.question = questionService.fetchedQuestions[index];
                         initQuestion();
                     }
                 })
@@ -143,6 +172,5 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
 
         $scope.totalVotes = $scope.question.option_1_votes + $scope.question.option_2_votes;
 
-    }
-
+    }*/
 });

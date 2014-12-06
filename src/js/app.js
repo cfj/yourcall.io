@@ -16,7 +16,8 @@ angular.module('yourcall:app', ['yourcall:services', 'yourcall:directives', 'ngR
             controller: 'SingleQuestionCtrl'
         })
         .when('/oops/notfound', {
-            templateUrl: '/partials/notfound.html'
+            templateUrl: '/partials/notfound.html',
+            controller: 'NotFoundCtrl'
         });
 
     $locationProvider.html5Mode(true);
