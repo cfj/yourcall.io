@@ -9,7 +9,7 @@ angular.module('yourcall:services').factory('pageService', function (UITextServi
     };
 
     pageService.setTitle = function (pageTitle) {
-        title = UITextService.QUESTION_PAGE_TITLE + pageTitle;
+        title = UITextService.titles.QUESTION_PAGE_TITLE + pageTitle;
     };
 
     return pageService;

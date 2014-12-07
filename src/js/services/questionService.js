@@ -32,30 +32,26 @@ angular.module('yourcall:services').factory('questionService',function ($http, $
                 }
             }
 
-            //Fixa!
-            $http.delete('/api/delete/' + questionId + '?verify=' + verify).success(function () {
-                $http.get('/api/random');
-            });
+            return $http.delete('/api/delete/' + questionId + '?verify=' + verify);
         }
 
     };
 
     questionService.getQuestion = function (questionUrl) {
+        var ownedQuestions = '',
+            votedQuestions = utilityService.readCookie(appService.cookieNames.VOTES);
+
+        if (utilityService.readCookie(appService.cookieNames.OWNED_QUESTIONS)) {
+            var owned = utilityService.readCookie(appService.cookieNames.OWNED_QUESTIONS).split('|');
+
+            for (var i = 0; i < owned.length; i++) {
+                ownedQuestions += ':' + owned[i].split(':')[0];
+            }
+        }
+
         return $http.get('/api/questions/' + questionUrl)
             .success(function (question) {
-                var ownedQuestions = '',
-                    votedQuestions = utilityService.readCookie(appService.cookieNames.VOTES);
-
-                if (utilityService.readCookie(appService.cookieNames.OWNED_QUESTIONS)) {
-                    var owned = utilityService.readCookie(appService.cookieNames.OWNED_QUESTIONS).split('|');
-
-                    for (var i = 0; i < owned.length; i++) {
-                        ownedQuestions += ':' + owned[i].split(':')[0];
-                    }
-                }
-
                 pageService.setTitle(question.title);
-
                 
                 if (votedQuestions && votedQuestions.indexOf(question.url) > -1) {
                     question.hasVoted = true;
