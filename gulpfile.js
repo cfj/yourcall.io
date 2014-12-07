@@ -24,12 +24,7 @@ gulp.task('images', function() {
     .pipe(gulp.dest(path.join(paths.dist, 'images')));
 });
 
-gulp.task('libscripts', function() {
-    return gulp.src(path.join(paths.js, 'lib/*.js'))
-    .pipe(gulp.dest(path.join(paths.dist, 'js/lib')));
-});
-
-gulp.task('scripts', ['libscripts'], function() {
+gulp.task('scripts', function() {
     return gulp.src([path.join(paths.js, '/**/*.js'), '!src/js/lib/*.js'])
     .pipe(sourcemaps.init())
     .pipe(concat('all.min.js'))
