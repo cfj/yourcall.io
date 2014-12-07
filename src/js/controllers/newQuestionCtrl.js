@@ -20,7 +20,7 @@ angular.module('yourcall:app').controller('NewQuestionCtrl', function ($scope, $
                 questionService.createQuestion($scope.formData).success(function (data) {
                     $scope.formData = {};
                     $scope.newQuestion = data;
-                    $location.path('/' + data.url);
+                    $location.path('/q/' + data.url);
                 });
             }
         } else {

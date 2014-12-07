@@ -1,5 +1,3 @@
-// http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular
-
 //Setup
 var express  = require('express'),
     app      = express(),
@@ -301,8 +299,12 @@ app.get('/show/kbamNaFJ4wyl5poBrBMoxruX9FPdGS', function (req, res) {
     res.sendfile('./dist/partials/73DRIj56vz2sV44BEwiMgerdaF4RjG.html');
 });
 
-app.get('/:question_url', function (req, res) {
-    res.redirect('/#' + req.params.question_url);
+app.get('/q/:question_url', function (req, res) {
+    res.redirect('#/q/' + req.params.question_url);
+});
+
+app.get('/ask', function (req, res) {
+    res.redirect('#/ask');
 });
 
 //Listen (start app with node server.js)

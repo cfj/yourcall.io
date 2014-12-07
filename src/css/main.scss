@@ -18,7 +18,7 @@ $option2ColorHover: #FFEF7A;
 
 body {
     font-family: 'Montserrat', Arial, sans-serif;
-    background: url('../images/bg2.png');
+    background: url('../images/background.png');
     min-width: 440px;
 }
 
@@ -314,17 +314,18 @@ td {
     margin: 0 auto;
     text-align: center;
     margin: 6em 0;
-}
 
-    .notfound h1 {
+    h1 {
         display: inline-block;
         font-size: 6em;
     }
 
-    .notfound a {
+    a {
         margin-top: 1em;
         color: white;
     }
+}
+
 
 .not-found-question {
     margin-top: 4em;

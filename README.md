@@ -1,5 +1,7 @@
 README - YourCall.io - let your friends decide
 
+http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular
+
 Digital Ocean tutorials:
 https://www.digitalocean.com/community/articles/how-to-host-multiple-node-js-applications-on-a-single-vps-with-nginx-forever-and-crontab
 https://www.digitalocean.com/community/articles/how-to-set-up-automatic-deployment-with-git-with-a-vps

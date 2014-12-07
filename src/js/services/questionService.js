@@ -69,14 +69,12 @@ angular.module('yourcall:services').factory('questionService',function ($http, $
     };
 
     questionService.voteOnQuestion = function (question, vote) {
-        if (!question.hasVoted) {
-            return $http.put('/api/vote/' + question.url + '/' + vote).success(function (data) {
-                if (data.success === 'true') {
-                    question['option_' + vote + '_votes'] += 1;
-                    question.hasVoted = true;
-                }
-            });          
-        }
+        return $http.put('/api/vote/' + question.url + '/' + vote).success(function (data) {
+            if (data.success === 'true') {
+                question['option_' + vote + '_votes'] += 1;
+                question.hasVoted = true;
+            }
+        });
     };
 
     /**

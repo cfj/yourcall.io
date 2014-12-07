@@ -2,10 +2,9 @@ angular.module('yourcall:directives').directive('siteFooter', function ($rootSco
 
     return {
         restrict: 'E',
-        templateUrl: 'partials/directives/sitefooter.html',
+        templateUrl: '/partials/directives/sitefooter.html',
         link: function(scope, element, attrs) {
             $rootScope.$on('$routeChangeSuccess', function () {
-                console.log($location.path());
                 if($location.path().indexOf('notfound') > -1) {
                     element.addClass('hidden');
                 } else {

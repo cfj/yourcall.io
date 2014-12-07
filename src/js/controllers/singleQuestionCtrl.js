@@ -19,14 +19,16 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
         $scope.deleteMessage = UITextService.PENDING_DELETE;
 
         questionService.deleteQuestion(questionId).success(function (question) {
-            $location.path('/' + $scope.nextQuestion.url);
+            $location.path('/q/' + $scope.nextQuestion.url);
         });
     };
 
     $scope.vote = function (question, vote) {
-        questionService.voteOnQuestion(question, vote).success(function (response) {
-            $scope.totalVotes = question.option_1_votes + question.option_2_votes;
-        });
+        if(!question.hasVoted) {
+            questionService.voteOnQuestion(question, vote).success(function (response) {
+                $scope.totalVotes = question.option_1_votes + question.option_2_votes;
+            });
+        }
     };
 
     $scope.reportQuestion = function (id) {
