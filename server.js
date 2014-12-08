@@ -303,8 +303,12 @@ app.get('/q/:question_url', function (req, res) {
     res.redirect('#/q/' + req.params.question_url);
 });
 
-app.get('/ask', function (req, res) {
-    res.redirect('#/ask');
+app.get('/:question_url', function (req, res) {
+    if(req.params.question_url === 'ask') {
+        res.redirect('#/ask');    
+    }
+    
+    res.redirect('#/q/' + req.params.question_url);
 });
 
 //Listen (start app with node server.js)
