@@ -90,8 +90,13 @@ angular.module('yourcall:services').factory('questionService',function ($http, $
         return $http.post('/api/questions', newQuestion);
     };
 
-    questionService.getAllQuestions = function () {};
-    questionService.getReportedQuestions = function () {};
+    questionService.getAllQuestions = function () {
+        return $http.get('/api/questions');
+    };
+
+    questionService.getReportedQuestions = function () {
+        return $http.get('/api/reported');
+    };
 
     return questionService;
 });
