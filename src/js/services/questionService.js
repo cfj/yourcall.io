@@ -1,4 +1,4 @@
-angular.module('yourcall:services').factory('questionService',function ($http, $location, UITextService, utilityService, appService, pageService) {
+angular.module('yourcall:services').factory('questionService',function ($http, $location, $window, UITextService, utilityService, appService, pageService) {
     var questionService = {};
 
     questionService.fetchedQuestions = [];
@@ -18,21 +18,21 @@ angular.module('yourcall:services').factory('questionService',function ($http, $
      * @return {promise} representing a question object
      */
     questionService.deleteQuestion = function (questionId) {
-        var confirmDelete = window.confirm(UITextService.CONFIRMATION_MESSAGE);
-        var verify = '';
+        var confirmDelete = $window.confirm(UITextService.CONFIRMATION_MESSAGE);
+        var ownershipToken = '';
 
         if (confirmDelete) {
             if (utilityService.readCookie(appService.cookieNames.OWNED_QUESTIONS)) {
                 var owned = utilityService.readCookie(appService.cookieNames.OWNED_QUESTIONS).split('|');
 
-                for (var i = 0; i < owned.length; i++) {
+                owned.forEach(function (token) {
                     if (questionId === owned[i].split(':')[0]) {
-                        verify = owned[i].split(':')[1];
+                        ownershipToken = owned[i].split(':')[1];
                     }
-                }
+                });
             }
 
-            return $http.delete('/api/delete/' + questionId + '?verify=' + verify);
+            return $http.delete('/api/delete/' + questionId + '?verify=' + ownershipToken);
         }
 
     };
