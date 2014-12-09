@@ -72,3 +72,16 @@
 @keyframes scaleUp {
     from { opacity: 0.3; -webkit-transform: scale(0.8); }
 }
+
+@keyframes loading {
+    0% {
+        transform: scale(.4);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}

@@ -428,3 +428,31 @@ td {
     animation-delay: 0s;
     animation-play-state: running;
 }
+
+/* ==========================================================================
+   Loading spinner
+   ========================================================================== */
+
+%loader {
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border: 4px solid #fff;
+    opacity: 0;
+}
+
+.loading {
+    display: inline-block;
+
+    &:before {
+        @extend %loader;
+        animation: loading 2s infinite;
+    }
+
+    &:after {
+        @extend %loader;
+        animation: loading 2s infinite 1s;
+    }
+}

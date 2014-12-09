@@ -2,15 +2,18 @@
     <div class="logo" ng-show="fjlsd">
         
     </div>
+
     <div class="add-link">
         <a class="button" href="/ask">Ask a question</a>
     </div>
+
     <div class="slide-container">
         <div class="question slide">
             <h1 ng-hide="question">Loading...</h1>
             <h1 ng-show="question">{{question.title}}</h1>
         </div>
     </div>
+    
     <div class="info">
         Asked by {{question.creator}} on {{question.date | date}}, {{question.option_1_votes + question.option_2_votes}} votes.
         <div class="header-buttons">
@@ -29,6 +32,7 @@
         <h3 class="slide" ng-show="question">{{question.option_1}}</h3>
     </div>
 </div>
+
 <div class="option-wrapper" ng-click="vote(question, 2)" slide-graph voted="{{question.hasVoted}}">
     <div class="option option-2"></div>
     <div class="option-content content-2">
@@ -40,10 +44,10 @@
 
 <div class="control-buttons">
     <a class="button shake" ng-hide="nextQuestion">
-        Loading next...
+        <span class="loading"></span><span>Loading next...</span>
     </a>
     <a class="button shake" ng-show="nextQuestion" id="next-button" ng-href="/q/{{nextQuestion.url}}" self-refresh>
-        {{nextQuestion ? "Answer another &#10152;" : "Loading next..."}}
+        Answer another &#10152;
     </a>
     <div class="add-link-mobile">
         <a class="button" href="/ask">Ask a question</a>
