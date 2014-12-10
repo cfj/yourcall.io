@@ -1,4 +1,4 @@
-angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope, $routeParams, $location, questionService, UITextService) {
+angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope, $routeParams, $location, questionService, UITextService, $timeout) {
 
     $scope.reportMessage = UITextService.REPORT;
     $scope.deleteMessage = UITextService.DELETE;
@@ -11,8 +11,11 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
         });
     }
 
+    //Måste lägga till en delay, annars fuckar UIt upp i Chrome. ng-hide och ng-show switchar för snabbt eller nåt.
     questionService.getRandomQuestion().success(function (data) {
-        $scope.nextQuestion = data[0];
+        $timeout(function() {
+            $scope.nextQuestion = data[0];
+        }, 100);
     });
 
     $scope.deleteQuestion = function (questionId) {

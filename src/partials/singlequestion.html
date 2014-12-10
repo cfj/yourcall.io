@@ -43,12 +43,14 @@
 </div>
 
 <div class="control-buttons">
-    <a class="button shake" ng-hide="nextQuestion">
-        <span class="loading"></span><span>Loading next...</span>
-    </a>
     <a class="button shake" ng-show="nextQuestion" id="next-button" ng-href="/q/{{nextQuestion.url}}" self-refresh>
+        <!--<span>{{nextQuestion ? 'Answer another &#10152;' : 'Loading next...'}}</span>-->
         Answer another &#10152;
     </a>
+    <span class="button shake" ng-hide="nextQuestion">
+        <span class="loading"></span>
+        <span>Loading next...</span>
+    </span>
     <div class="add-link-mobile">
         <a class="button" href="/ask">Ask a question</a>
     </div>
