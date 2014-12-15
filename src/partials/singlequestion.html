@@ -18,8 +18,8 @@
         Asked by {{vm.question.creator}} on {{vm.question.date | date}}, {{vm.question.option_1_votes + vm.question.option_2_votes}} votes.
         <div class="header-buttons">
             <a class="tweet-link button-small" target="_blank" ng-href="https://twitter.com/share?text=Your+call:+{{question.title}}&hashtags=yourcall">Tweet</a>
-            <a class="alert button-small" href="" ng-click="vm.reportQuestion(question._id)">{{vm.reportMessage}}</a>
-            <a class="warning button-small" href="" ng-click="vm.deleteQuestion(question._id)" ng-show="vm.isOwnedQuestion">{{vm.deleteMessage}}</a>
+            <a class="alert button-small" href="" ng-click="vm.reportQuestion(vm.question._id)">{{vm.reportMessage}}</a>
+            <a class="warning button-small" href="" ng-click="vm.deleteQuestion(vm.question._id)" ng-show="vm.isOwnedQuestion">{{vm.deleteMessage}}</a>
         </div>
     </div>
 </header>
