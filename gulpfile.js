@@ -9,6 +9,7 @@ var minifycss = require('gulp-minify-css');
 var minifyhtml = require('gulp-minify-html');
 var ngAnnotate = require('gulp-ng-annotate');
 var sourcemaps = require('gulp-sourcemaps');
+var wrap = require('gulp-wrap');
 
 var paths = {
     sass: 'src/css',
@@ -30,6 +31,7 @@ gulp.task('scripts', function() {
     .pipe(concat('all.min.js'))
     .pipe(ngAnnotate())
     .pipe(uglify())
+    .pipe(wrap('(function(){\'use strict\';<%= contents %>})();'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(path.join(paths.dist, 'js')));
 });
