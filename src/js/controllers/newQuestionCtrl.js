@@ -1,30 +1,32 @@
 angular.module('yourcall:app').controller('NewQuestionCtrl', function ($scope, $location, pageService, questionService, UITextService, appService) {
     
+    var vm = this;
+
     pageService.setTitle(UITextService.titles.NEW_QUESTION);
 
-    $scope.submitted = false;
-    $scope.errorMessage = '';
-    $scope.formData = {};
-    $scope.formData.isPrivate = false;
+    vm.submitted = false;
+    vm.errorMessage = '';
+    vm.formData = {};
+    vm.formData.isPrivate = false;
 
-    $scope.createQuestion = function () {
-        if ($scope.formData.title && $scope.formData.option_1 && $scope.formData.option_2) {
-            if ($scope.formData.title.length > appService.TITLE_THRESHOLD) {
-                $scope.errorMessage = UITextService.ERROR_LONG_QUESTION;
-            } else if ($scope.formData.option_1.length > appService.OPTION_THRESHOLD || $scope.formData.option_2.length > appService.OPTION_THRESHOLD) {
-                $scope.errorMessage = UITextService.ERROR_LONG_OPTION;
+    vm.createQuestion = function () {
+        if (vm.formData.title && vm.formData.option_1 && vm.formData.option_2) {
+            if (vm.formData.title.length > appService.TITLE_THRESHOLD) {
+                vm.errorMessage = UITextService.ERROR_LONG_QUESTION;
+            } else if (vm.formData.option_1.length > appService.OPTION_THRESHOLD || vm.formData.option_2.length > appService.OPTION_THRESHOLD) {
+                vm.errorMessage = UITextService.ERROR_LONG_OPTION;
             } else {
-                $scope.submitted = true;
-                $scope.errorMessage = '';
+                vm.submitted = true;
+                vm.errorMessage = '';
 
-                questionService.createQuestion($scope.formData).success(function (data) {
-                    $scope.formData = {};
-                    $scope.newQuestion = data;
+                questionService.createQuestion(vm.formData).success(function (data) {
+                    vm.formData = {};
+                    vm.newQuestion = data;
                     $location.path('/q/' + data.url);
                 });
             }
         } else {
-            $scope.errorMessage = UITextService.ERROR_FIELDS_EMPTY;
+            vm.errorMessage = UITextService.ERROR_FIELDS_EMPTY;
         }
     };
 

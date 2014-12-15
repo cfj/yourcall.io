@@ -1,5 +1,5 @@
 <header>
-    <div class="logo" ng-show="fjlsd">
+    <div class="logo" ng-show="vm.fjlsd">
         
     </div>
 
@@ -9,44 +9,44 @@
 
     <div class="slide-container">
         <div class="question slide">
-            <h1 ng-hide="question">Loading...</h1>
-            <h1 ng-show="question">{{question.title}}</h1>
+            <h1 ng-hide="vm.question">Loading...</h1>
+            <h1 ng-show="vm.question">{{vm.question.title}}</h1>
         </div>
     </div>
     
     <div class="info">
-        Asked by {{question.creator}} on {{question.date | date}}, {{question.option_1_votes + question.option_2_votes}} votes.
+        Asked by {{vm.question.creator}} on {{vm.question.date | date}}, {{vm.question.option_1_votes + vm.question.option_2_votes}} votes.
         <div class="header-buttons">
             <a class="tweet-link button-small" target="_blank" ng-href="https://twitter.com/share?text=Your+call:+{{question.title}}&hashtags=yourcall">Tweet</a>
-            <a class="alert button-small" href="" ng-click="reportQuestion(question._id)">{{reportMessage}}</a>
-            <a class="warning button-small" href="" ng-click="deleteQuestion(question._id)" ng-show="isOwnedQuestion">{{deleteMessage}}</a>
+            <a class="alert button-small" href="" ng-click="vm.reportQuestion(question._id)">{{vm.reportMessage}}</a>
+            <a class="warning button-small" href="" ng-click="vm.deleteQuestion(question._id)" ng-show="vm.isOwnedQuestion">{{vm.deleteMessage}}</a>
         </div>
     </div>
 </header>
 
-<div class="option-wrapper" ng-click="vote(question, 1)" slide-graph voted="{{question.hasVoted}}">
+<div class="option-wrapper" ng-click="vm.vote(vm.question, 1)" slide-graph voted="{{vm.question.hasVoted}}">
     <div class="option option-1"></div>
     <div class="option-content content-1">
-        <aside id="result-1" ng-show="question.hasVoted" class="percentage">{{question.option_1_votes / totalVotes * 100 | number:0}}<small>%</small></aside>
-        <h3 class="slide" ng-hide="question">Loading...</h3>
-        <h3 class="slide" ng-show="question">{{question.option_1}}</h3>
+        <aside id="result-1" ng-show="vm.question.hasVoted" class="percentage">{{vm.question.option_1_votes / vm.totalVotes * 100 | number:0}}<small>%</small></aside>
+        <h3 class="slide" ng-hide="vm.question">Loading...</h3>
+        <h3 class="slide" ng-show="vm.question">{{vm.question.option_1}}</h3>
     </div>
 </div>
 
-<div class="option-wrapper" ng-click="vote(question, 2)" slide-graph voted="{{question.hasVoted}}">
+<div class="option-wrapper" ng-click="vm.vote(vm.question, 2)" slide-graph voted="{{vm.question.hasVoted}}">
     <div class="option option-2"></div>
     <div class="option-content content-2">
-        <aside id="result-2" ng-show="question.hasVoted" class="percentage">{{question.option_2_votes / totalVotes * 100 | number:0}}<small>%</small></aside>
-        <h3 class="slide" ng-hide="question">Loading...</h3>
-        <h3 class="slide">{{question.option_2}}</h3>
+        <aside id="result-2" ng-show="vm.question.hasVoted" class="percentage">{{vm.question.option_2_votes / vm.totalVotes * 100 | number:0}}<small>%</small></aside>
+        <h3 class="slide" ng-hide="vm.question">Loading...</h3>
+        <h3 class="slide">{{vm.question.option_2}}</h3>
     </div>
 </div>
 
 <div class="control-buttons">
-    <a class="button shake" ng-show="nextQuestion" id="next-button" ng-href="/q/{{nextQuestion.url}}" self-refresh>
+    <a class="button shake" ng-show="vm.nextQuestion" id="next-button" ng-href="/q/{{vm.nextQuestion.url}}" self-refresh>
         Answer another &#10152;
     </a>
-    <span class="button shake" ng-hide="nextQuestion">
+    <span class="button shake" ng-hide="vm.nextQuestion">
         <span class="loading"></span>
         <span>Loading next...</span>
     </span>

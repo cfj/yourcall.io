@@ -9,11 +9,13 @@ angular.module('yourcall:app', ['yourcall:services', 'yourcall:directives', 'ngR
         })
         .when('/ask', {
             templateUrl: '/partials/newquestion.html',
-            controller: 'NewQuestionCtrl'
+            controller: 'NewQuestionCtrl',
+            controllerAs: 'vm'
         })
         .when('/q/:question_url', {
             templateUrl: '/partials/singlequestion.html',
-            controller: 'SingleQuestionCtrl'
+            controller: 'SingleQuestionCtrl',
+            controllerAs: 'vm'
         })
         .when('/oops/notfound', {
             templateUrl: '/partials/notfound.html',
