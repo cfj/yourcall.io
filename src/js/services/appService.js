@@ -6,7 +6,9 @@ angular.module('yourcall:services').factory('appService', function () {
             VOTES: 'votes'
         },
         TITLE_THRESHOLD: 37,
-        OPTION_THRESHOLD: 50
+        OPTION_THRESHOLD: 50,
+        DISPLAY_PERCENTAGES_DELAY: 1500,
+        DISPLAY_BUTTON_ANIMATION_DELAY: 5000
     };
 
     return appService;

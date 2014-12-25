@@ -1,4 +1,4 @@
-angular.module('yourcall:directives').directive('slideGraph', function($timeout) {
+angular.module('yourcall:directives').directive('pollBar', function($timeout, appService) {
 
     return {
         restrict: 'A',
@@ -32,25 +32,25 @@ angular.module('yourcall:directives').directive('slideGraph', function($timeout)
             var nextQuestionCTA = function () {
                 nextButton.classList.add('shake-rotate');
             };
-            
-            var slide = function () {
+
+            var displayResult = function () {
                 $timeout(setBarHeights, 100);
 
-                $timeout(showPercentages, 1500);
+                $timeout(showPercentages, appService.DISPLAY_PERCENTAGES_DELAY);
 
-                $timeout(nextQuestionCTA, 5000);
+                $timeout(nextQuestionCTA, appService.DISPLAY_BUTTON_ANIMATION_DELAY);
             };
 
             if(!scope.showResult) {
                 scope.$watch('voted', function(hasVoted) {
                     if (hasVoted) {
-                        slide();
+                        displayResult();
                     } else {
-                        element.on('click', slide);
+                        element.on('click', displayResult);
                     }
                 });
             } else {
-                slide();
+                displayResult();
             }
         }
     }
