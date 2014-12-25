@@ -303,6 +303,10 @@ app.get('/q/:question_url', function (req, res) {
     res.redirect('#/q/' + req.params.question_url);
 });
 
+app.get('/q/:question_url/result', function (req, res) {
+    res.redirect('#/q/' + req.params.question_url + '/result');
+});
+
 app.get('/:question_url', function (req, res) {
     if(req.params.question_url === 'ask') {
         res.redirect('#/ask');    
