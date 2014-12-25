@@ -3,7 +3,8 @@ angular.module('yourcall:directives').directive('slideGraph', function($timeout)
     return {
         restrict: 'A',
         scope: {
-            voted: '@'
+            voted: '@',
+            showResult: '='
         },
         link: function(scope, element, attrs) {
 
@@ -15,38 +16,42 @@ angular.module('yourcall:directives').directive('slideGraph', function($timeout)
                 result1Value,
                 result2Value;
 
-            scope.$watch('voted', function(hasVoted) {
-               
-                var slide = function () {
-                    $timeout(function() {
-                        result1Value = result1.textContent.replace('%', '') + 'vh',
-                        result2Value = result2.textContent.replace('%', '') + 'vh';
+            var setBarHeights = function () {
+                result1Value = result1.textContent.replace('%', '') + 'vh',
+                result2Value = result2.textContent.replace('%', '') + 'vh';
 
-                        option1.style.height = result1Value;
-                        option2.style.height = result2Value;
-                    }, 100);
+                option1.style.height = result1Value;
+                option2.style.height = result2Value;
+            };
 
-                    $timeout(function() {
-                        result1.classList.add('show-percentage');
-                        result2.classList.add('show-percentage');
-                    }, 1500);
+            var showPercentages = function () {
+                result1.classList.add('show-percentage');
+                result2.classList.add('show-percentage');
+            };
 
-                    $timeout(function() {
-                        nextButton.classList.add('shake-rotate');
-                    }, 5000);
-                }
+            var nextQuestionCTA = function () {
+                nextButton.classList.add('shake-rotate');
+            };
+            
+            var slide = function () {
+                $timeout(setBarHeights, 100);
 
-                if (hasVoted) {
-                    slide();
-                } else {
-                    element.on('click', function() {
-                        if(hasVoted) {
-                            slide();
-                        }
-                    });
-                }
+                $timeout(showPercentages, 1500);
 
-            });
+                $timeout(nextQuestionCTA, 5000);
+            };
+
+            if(!scope.showResult) {
+                scope.$watch('voted', function(hasVoted) {
+                    if (hasVoted) {
+                        slide();
+                    } else {
+                        element.on('click', slide);
+                    }
+                });
+            } else {
+                slide();
+            }
         }
     }
 });

@@ -20,23 +20,24 @@
             <a class="tweet-link button-small" target="_blank" ng-href="https://twitter.com/share?text=Your+call:+{{question.title}}&hashtags=yourcall">Tweet</a>
             <a class="alert button-small" href="" ng-click="vm.reportQuestion(vm.question._id)">{{vm.reportMessage}}</a>
             <a class="warning button-small" href="" ng-click="vm.deleteQuestion(vm.question._id)" ng-show="vm.isOwnedQuestion">{{vm.deleteMessage}}</a>
+            <!--<a ng-href="/q/{{vm.question.url}}/result" class="alert button-small">Results</a>-->
         </div>
     </div>
 </header>
 
-<div class="option-wrapper" ng-click="vm.vote(vm.question, 1)" slide-graph voted="{{vm.question.hasVoted}}">
+<div class="option-wrapper" ng-click="vm.vote(vm.question, 1)" slide-graph voted="{{vm.question.hasVoted}}" show-result="vm.showResult">
     <div class="option option-1"></div>
     <div class="option-content content-1">
-        <aside id="result-1" ng-show="vm.question.hasVoted" class="percentage">{{vm.question.option_1_votes / vm.totalVotes * 100 | number:0}}<small>%</small></aside>
+        <aside id="result-1" class="percentage">{{vm.question.option_1_votes / vm.totalVotes * 100 | number:0}}<small>%</small></aside>
         <h3 class="slide" ng-hide="vm.question">Loading...</h3>
         <h3 class="slide" ng-show="vm.question">{{vm.question.option_1}}</h3>
     </div>
 </div>
 
-<div class="option-wrapper" ng-click="vm.vote(vm.question, 2)" slide-graph voted="{{vm.question.hasVoted}}">
+<div class="option-wrapper" ng-click="vm.vote(vm.question, 2)" slide-graph voted="{{vm.question.hasVoted}}" show-result="vm.showResult">
     <div class="option option-2"></div>
     <div class="option-content content-2">
-        <aside id="result-2" ng-show="vm.question.hasVoted" class="percentage">{{vm.question.option_2_votes / vm.totalVotes * 100 | number:0}}<small>%</small></aside>
+        <aside id="result-2" class="percentage">{{vm.question.option_2_votes / vm.totalVotes * 100 | number:0}}<small>%</small></aside>
         <h3 class="slide" ng-hide="vm.question">Loading...</h3>
         <h3 class="slide">{{vm.question.option_2}}</h3>
     </div>

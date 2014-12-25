@@ -2,6 +2,12 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
 
     var vm = this;
 
+    vm.showResult = false;
+
+    if($location.$$path.indexOf('result') > -1) {
+        vm.showResult = true;
+    }
+
     vm.reportMessage = UITextService.REPORT;
     vm.deleteMessage = UITextService.DELETE;
 

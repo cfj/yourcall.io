@@ -17,6 +17,11 @@ angular.module('yourcall:app', ['yourcall:services', 'yourcall:directives', 'ngR
             controller: 'SingleQuestionCtrl',
             controllerAs: 'vm'
         })
+        .when('/q/:question_url/result', {
+            templateUrl: '/partials/singlequestion.html',
+            controller: 'SingleQuestionCtrl',
+            controllerAs: 'vm'
+        })
         .when('/oops/notfound', {
             templateUrl: '/partials/notfound.html',
             controller: 'NotFoundCtrl'
