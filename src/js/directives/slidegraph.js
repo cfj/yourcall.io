@@ -7,16 +7,16 @@ angular.module('yourcall:directives').directive('slideGraph', function($timeout)
         },
         link: function(scope, element, attrs) {
 
+            var result1    = document.getElementById('result-1'),
+                result2    = document.getElementById('result-2'),
+                option1    = document.querySelector('.option-1'),
+                option2    = document.querySelector('.option-2'),
+                nextButton = document.getElementById('next-button'),
+                result1Value,
+                result2Value;
+
             scope.$watch('voted', function(hasVoted) {
                
-                var result1    = document.getElementById('result-1'),
-                    result2    = document.getElementById('result-2'),
-                    option1    = document.querySelector('.option-1'),
-                    option2    = document.querySelector('.option-2'),
-                    nextButton = document.getElementById('next-button'),
-                    result1Value,
-                    result2Value;    
-
                 var slide = function () {
                     $timeout(function() {
                         result1Value = result1.textContent.replace('%', '') + 'vh',
