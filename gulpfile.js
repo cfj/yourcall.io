@@ -36,7 +36,7 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest(path.join(paths.dist, 'js')));
 });
 
-gulp.task('distscripts', ['libscripts'], function() {
+gulp.task('distscripts', function() {
    return gulp.src([path.join(paths.js, '/**/*.js'), '!src/js/lib/*.js'])
    .pipe(concat('all.min.js'))
    .pipe(ngAnnotate())
@@ -81,4 +81,4 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['html', 'sass', 'scripts', 'watch'], function() {});
-gulp.task('dist', ['html', 'sass', 'distscripts'], function() {})
+gulp.task('dist', ['html', 'sass', 'distscripts', 'images'], function() {})
