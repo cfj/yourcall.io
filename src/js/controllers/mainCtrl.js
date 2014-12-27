@@ -4,7 +4,7 @@ angular.module('yourcall:app').controller('MainCtrl', function ($scope, $http, $
 
     questionService.getRandomQuestion().then(function (response) {
         if ($location.path() === '/') {
-            $location.path('/q/' + response.data[0].url);
+            $location.path('/q/' + response.data);
         }
     });
 

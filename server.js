@@ -93,7 +93,7 @@ app.get('/api/random', function (req, res) {
             res.send(err);
         }
 
-        res.json(question);
+        res.send(question[0].url);
     });
 
 });

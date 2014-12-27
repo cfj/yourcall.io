@@ -20,9 +20,9 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
     }
 
     //Måste lägga till en delay, annars fuckar UIt upp i Chrome. ng-hide och ng-show switchar för snabbt eller nåt.
-    questionService.getRandomQuestion().success(function (data) {
+    questionService.getRandomQuestion().success(function (url) {
         $timeout(function() {
-            vm.nextQuestion = data[0];
+            vm.nextQuestion = url;
         }, 100);
     });
 
