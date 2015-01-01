@@ -25,16 +25,21 @@ angular.module('yourcall:services').factory('questionService',function ($http, $
             if (utilityService.readCookie(appService.cookieNames.OWNED_QUESTIONS)) {
                 var owned = utilityService.readCookie(appService.cookieNames.OWNED_QUESTIONS).split('|');
 
-                owned.forEach(function (token) {
+                /*owned.forEach(function (token) {
                     if (questionId === owned[i].split(':')[0]) {
                         ownershipToken = owned[i].split(':')[1];
                     }
-                });
+                });*/
+
+                for(var i = 0; i < owned.length; i++) {
+                    if (questionId === owned[i].split(':')[0]) {
+                        ownershipToken = owned[i].split(':')[1];
+                    }
+                }
             }
 
             return $http.delete('/api/delete/' + questionId + '?verify=' + ownershipToken);
         }
-
     };
 
     questionService.getQuestion = function (questionUrl) {

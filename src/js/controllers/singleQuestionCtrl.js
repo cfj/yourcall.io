@@ -30,7 +30,7 @@ angular.module('yourcall:app').controller('SingleQuestionCtrl', function ($scope
         vm.deleteMessage = UITextService.PENDING_DELETE;
 
         questionService.deleteQuestion(questionId).success(function (question) {
-            $location.path('/q/' + vm.nextQuestion.url);
+            $location.path('/q/' + vm.nextQuestion);
         });
     };
 
