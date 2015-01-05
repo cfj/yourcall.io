@@ -24,7 +24,8 @@ angular.module('yourcall:app', ['yourcall:services', 'yourcall:directives', 'ngR
         })
         .when('/oops/notfound', {
             templateUrl: '/partials/notfound.html',
-            controller: 'NotFoundCtrl'
+            controller: 'NotFoundCtrl',
+            controllerAs: 'vm'
         });
 
     $locationProvider.html5Mode(true);

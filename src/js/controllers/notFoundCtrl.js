@@ -1,7 +1,9 @@
 angular.module('yourcall:app').controller('NotFoundCtrl', function ($scope, questionService) {
     
+    var vm = this;
+
     questionService.getRandomQuestion().then(function (response) {
-        $scope.question = response.data[0];
+        vm.questionUrl = response.data;
     });
 
 });
