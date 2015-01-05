@@ -1,3 +1,3 @@
-Source to the webapp [http://yourcall.io](yourcall.io).
+Source to the webapp [yourcall.io](http://yourcall.io).
 
 Built on the [MEAN](http://mean.io) stack.
