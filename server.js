@@ -25,8 +25,6 @@ app.configure(function () {
     });
 });
 
-
-//kanske ha ett värde i schemat som heter url, och som innehåller typ rr42FE
 var questionSchema = new Schema({
     title: String,
     url: String,
@@ -39,7 +37,6 @@ var questionSchema = new Schema({
     nsfw: { type: Boolean, default: false},
     reported: { type: Boolean, default: false},
     isPrivate: { type: Boolean, default: false}
-    //random: {type: Number, default: function(){return Math.random();}}
 });
 
 questionSchema.plugin(random(), { path: '_r' });
@@ -75,7 +72,7 @@ app.get('/api/questions', function (req, res) {
 });
 
 var randCoords = function () { return [Math.random(), Math.random()] };
-//Return a random question, kan kanske använda detta för att returnera många genom att ändra limit
+
 app.get('/api/random', function (req, res) {
 
     var query = Question.find();
@@ -259,44 +256,9 @@ app.delete('/api/delete/:question_id', function (req, res) {
     });
 });
 
-//delete a question (for admin)
-app.get('/api/xn7qW7bSErR53kxBeRPbzD0JNtyE5b/:question_id', function (req, res) {
-    Question.remove({
-        _id: req.params.question_id
-    }, function (err, question) {
-        if (err) {
-            res.send(err);
-        }
-
-        res.json({"success": "true"});
-    });
-});
-
-//make a question private (for admin)
-app.get('/api/QHVNaLzGYZoUwY3A202Ia5G4S5vPtg/:question_id', function (req, res) {
-    Question.findOneAndUpdate({ _id: req.params.question_id}, { isPrivate: true }, function (err, question) {
-        if (err) {
-            res.send(err);
-        }
-
-        res.json({"success": "true"});
-    });
-});
-
-
 //App routes
 app.get('/', function (req, res) {
     res.sendfile('./dist/index.html');
-});
-
-//Show all questions
-app.get('/show/ruMiT6ZxWIwRKj4ktQSgddFnkYqqbX', function (req, res) {
-    res.sendfile('./dist/partials/vnONfNvVQrTa6UPRABNrz5mq1SBLMG.html');
-});
-
-//Show reported questions
-app.get('/show/kbamNaFJ4wyl5poBrBMoxruX9FPdGS', function (req, res) {
-    res.sendfile('./dist/partials/73DRIj56vz2sV44BEwiMgerdaF4RjG.html');
 });
 
 app.get('/q/:question_url', function (req, res) {
