@@ -1,0 +1,10 @@
+ABOUT THE CREATOR
+Name:    Jonathan Svärdén
+Site:    http://svarden.se
+Twitter: @cfjsvarden
+
+ABOUT THE SITE
+Built on the MEAN stack (MongoDB, Express.js, AngularJS, Node.js).
+
+THANKS TO
+Guido Leijten (@MidiMojo) for helping out with testing.
