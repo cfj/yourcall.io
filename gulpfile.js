@@ -32,7 +32,7 @@ gulp.task('scripts', function() {
     .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(wrap('(function(){\'use strict\';<%= contents %>})();'))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(path.join(paths.dist, 'js')));
 });
 
