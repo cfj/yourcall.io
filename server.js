@@ -13,7 +13,7 @@ var express  = require('express'),
 mongoose.connect('mongodb://localhost/questions');
 
 app.configure(function () {
-    app.use(gzippo.staticGzip(__dirname + '/dist'));
+    app.use(gzippo.staticGzip(__dirname + '/public'));
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -258,7 +258,7 @@ app.delete('/api/delete/:question_id', function (req, res) {
 
 //App routes
 app.get('/', function (req, res) {
-    res.sendfile('./dist/index.html');
+    res.sendfile('./public/index.html');
 });
 
 app.get('/q/:question_url', function (req, res) {

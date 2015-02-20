@@ -14,7 +14,7 @@ var wrap = require('gulp-wrap');
 var paths = {
     sass: 'src/css',
     js: 'src/js',
-    dist: 'dist',
+    dest: 'public',
     html: 'src/partials',
     index: 'src/index.html',
     images: 'src/images'
@@ -22,7 +22,7 @@ var paths = {
 
 gulp.task('images', function() {
     return gulp.src(path.join(paths.images, '*.*'))
-    .pipe(gulp.dest(path.join(paths.dist, 'images')));
+    .pipe(gulp.dest(path.join(paths.dest, 'images')));
 });
 
 gulp.task('scripts', function() {
@@ -33,7 +33,7 @@ gulp.task('scripts', function() {
     .pipe(uglify())
     .pipe(wrap('(function(){\'use strict\';<%= contents %>})();'))
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(path.join(paths.dist, 'js')));
+    .pipe(gulp.dest(path.join(paths.dest, 'js')));
 });
 
 gulp.task('distscripts', function() {
@@ -41,7 +41,7 @@ gulp.task('distscripts', function() {
    .pipe(concat('all.min.js'))
    .pipe(ngAnnotate())
    .pipe(uglify())
-   .pipe(gulp.dest(path.join(paths.dist, 'js'))); 
+   .pipe(gulp.dest(path.join(paths.dest, 'js'))); 
 });
 
 gulp.task('index', function() {
@@ -50,7 +50,7 @@ gulp.task('index', function() {
         conditionals: true,
         empty: true
     }))
-    .pipe(gulp.dest(paths.dist));
+    .pipe(gulp.dest(paths.dest));
 });
 
 gulp.task('html', ['index'], function() {
@@ -58,7 +58,7 @@ gulp.task('html', ['index'], function() {
     .pipe(minifyhtml({
         empty: true
     }))
-    .pipe(gulp.dest(path.join(paths.dist, 'partials')));
+    .pipe(gulp.dest(path.join(paths.dest, 'partials')));
 });
 
 gulp.task('sass', function() {
@@ -67,7 +67,7 @@ gulp.task('sass', function() {
     .pipe(autoprefixer('last 2 version', '> 1%', 'ie 8', 'ie 9'))
     .pipe(minifycss())
     .pipe(rename('style.min.css'))
-    .pipe(gulp.dest(path.join(paths.dist, 'css')));
+    .pipe(gulp.dest(path.join(paths.dest, 'css')));
 });
 
 gulp.task('watch', function() {
