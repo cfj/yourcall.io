@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jonathan Svärdén",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "devDependencies": {
     "express": "~3.4.8",
     "cookies": "~0.4.0",
