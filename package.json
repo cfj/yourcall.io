@@ -8,6 +8,10 @@
   },
   "author": "Jonathan Svärdén",
   "license": "MIT",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/cfj/yourcall.io.git"
+    },
   "dependencies": {
     "express": "~3.4.8",
     "cookies": "~0.4.0",
