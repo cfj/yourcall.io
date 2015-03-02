@@ -22,7 +22,7 @@
     "cookie-parser": "~1.0.1"
   },
   "devDependencies": {
-    "frisby": "^0.8.5",
+    "frisby": "^0.6.9",
     "gulp": "~3.8.10",
     "gulp-autoprefixer": "~1.0.1",
     "gulp-concat": "~2.4.1",
