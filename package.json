@@ -4,7 +4,8 @@
   "description": "n/a",
   "main": "lib/server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node lib/server.js"
   },
   "author": "Jonathan Svärdén",
   "license": "MIT",
