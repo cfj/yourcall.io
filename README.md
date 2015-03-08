@@ -1,4 +1,4 @@
-# Simple poll app [![Build Status](https://travis-ci.org/cfj/yourcall.io.svg?branch=master)](https://travis-ci.org/cfj/yourcall.io)
+# Simple poll app
 
 View at [yourcall.io](http://yourcall.io).
 
