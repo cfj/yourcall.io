@@ -1,4 +1,4 @@
-var assert            = require("assert");
+var assert            = require('assert');
 var generateId        = require('../lib/util').generateId;
 var randomCoordinates = require('../lib/util').randomCoordinates;
 
@@ -13,6 +13,7 @@ describe('Generate random coordinates', function() {
     it('should return an array', function() {
         assert(Array.isArray(randomCoordinates()));
     });
+    
     it('should have two coordinates', function() {
         assert.equal(2, randomCoordinates().length);
     });
