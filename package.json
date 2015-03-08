@@ -4,7 +4,7 @@
   "description": "n/a",
   "main": "lib/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Jonathan Svärdén",
   "license": "MIT",
