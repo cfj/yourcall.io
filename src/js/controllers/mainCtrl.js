@@ -2,10 +2,14 @@ angular.module('yourcall:app').controller('MainCtrl', function ($scope, $http, $
 
     $scope.title = pageService.getTitle;
 
-    questionService.getRandomQuestion().then(function (response) {
-        if ($location.path() === '/') {
+    if ($location.path() === '/') {
+        questionService.getRandomQuestion()
+        .success(function (response) {
             $location.path('/q/' + response.data);
-        }
-    });
+        })
+        .error(function (response) {
+            $location.path('/ask');  
+        });
+    }
 
 });
