@@ -5,10 +5,11 @@ angular.module('yourcall:app').controller('MainCtrl', function ($scope, $http, $
     if ($location.path() === '/') {
         questionService.getRandomQuestion()
         .success(function (response) {
-            $location.path('/q/' + response.data);
+            console.log(response);
+            $location.path('/q/' + response);
         })
         .error(function (response) {
-            $location.path('/ask');  
+            $location.path('/ask');
         });
     }
 
