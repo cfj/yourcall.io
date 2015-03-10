@@ -5,7 +5,7 @@ angular.module('yourcall:services').factory('questionService',function ($http, $
 
     /**
      * Returns a random question from the questions API.
-     * @return {promise} representing a question object
+     * @return {promise} representing a question url
      */
     questionService.getRandomQuestion = function () {
         return $http.get('/api/random');
