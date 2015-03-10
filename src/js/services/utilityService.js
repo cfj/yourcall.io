@@ -15,5 +15,60 @@ angular.module('yourcall:services').factory('utilityService', function ($cookies
         return null;
     };
 
+    utilityService.isVotedQuestion = function (url) {
+        if (!localStorage.getItem('voted')) {
+            return false;
+        }
+
+        var votedQuestions = angular.fromJson(localStorage.getItem('voted'));
+
+        votedQuestions.forEach(function (question) {
+            if (question.url === url) {
+                return true;
+            }
+        });
+
+        return false;
+    };
+
+    utilityService.getVote = function (url) {
+        var votedQuestions = angular.fromJson(localStorage.getItem('voted'));
+
+        votedQuestions.forEach(function (question) {
+            if (question.url === url) {
+                return question.selection;
+            }
+        });
+    };
+
+    utilityService.isOwnQuestion = function (url) {
+        if (!localStorage.getItem('owned')) {
+            return false;
+        }
+
+        var ownedQuestions = angular.fromJson(localStorage.getItem('owned'));
+
+        return ownedQuestions.indexOf(url) > -1;
+    };
+
+    utilityService.addVotedQuestion = function (url, selection) {
+        var votedQuestions = localStorage.getItem('voted') ? angular.fromJson(localStorage.getItem('voted')) : [];
+
+        votedQuestions.push({
+            url: url,
+            selection: selection
+        });
+
+        localStorage.setItem('voted', angular.toJson(votedQuestions));
+    };
+
+    utilityService.addOwnQuestion = function (url) {
+        var ownedQuestions = localStorage.getItem('owned') ? angular.fromJson(localStorage.getItem('owned')) : [];
+
+        ownedQuestions.push(url);
+
+        localStorage.setItem('owned', angular.toJson(votedQuestions));  
+    };
+
     return utilityService;
 });
